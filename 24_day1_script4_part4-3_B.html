@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<title>DAY1_Script4_Part4-3_B</title>
+
+<style>
+
+body{
+    font-family:'Malgun Gothic',sans-serif;
+    background:#fafafa;
+    margin:40px;
+    line-height:1.8;
+}
+
+h1{
+    background:#34495e;
+    color:white;
+    padding:15px;
+}
+
+h2{
+    background:#9b59b6;
+    color:white;
+    padding:10px;
+    margin-top:35px;
+}
+
+.box{
+    background:white;
+    border-left:6px solid #9b59b6;
+    padding:18px;
+    margin:18px 0;
+}
+
+.activity{
+    background:#eef7ff;
+    border-left:6px solid #3498db;
+    padding:18px;
+    margin:18px 0;
+}
+
+.board{
+    background:#f4f4f4;
+    border:1px solid #ccc;
+    padding:18px;
+    font-family:Consolas;
+    white-space:pre-line;
+}
+
+.tip{
+    background:#fff8dc;
+    border-left:6px solid orange;
+    padding:18px;
+    margin:18px 0;
+}
+
+.memo{
+    background:#eefaf1;
+    border-left:6px solid #27ae60;
+    padding:18px;
+    margin:18px 0;
+}
+
+.exam{
+    background:#ffecec;
+    border-left:6px solid red;
+    padding:18px;
+    margin:18px 0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>DAY1 Script4 Part4-3-B</h1>
+
+<div class="box">
+
+<b>수업 시간</b><br>
+
+13:10 ~ 13:20
+
+<br><br>
+
+<b>학습 목표</b>
+
+<ul>
+
+<li>Entity와 Attribute를 연결하여 생각한다.</li>
+
+<li>실무에서 요구사항을 분석하는 흐름을 경험한다.</li>
+
+<li>데이터 모델링 사고방식을 익힌다.</li>
+
+</ul>
+
+</div>
+
+<h2>학생(Entity)을 설계해 보자</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+<br><br>
+
+좋습니다.
+
+학생은 관리 대상(Entity)이라는 것을 찾았습니다.
+
+<br><br>
+
+그런데 학생이라는 단어만으로는
+
+프로그램을 만들 수 있을까요?
+
+</div>
+
+<div class="activity">
+
+학생들에게 질문한다.
+
+<br><br>
+
+"학생을 관리하려면 어떤 정보가 필요할까요?"
+
+</div>
+
+<div class="tip">
+
+학생들의 답을 모두 칠판에 적는다.
+
+정답 여부를 바로 판단하지 않는다.
+
+</div>
+
+<h2>판서</h2>
+
+<div class="board">
+
+학생
+
+──────────────
+
+학번
+
+이름
+
+전화번호
+
+생년월일
+
+이메일
+
+주소
+
+학과
+
+학년
+
+입학일
+
+</div>
+
+<div class="box">
+
+<b>강사</b>
+
+좋습니다.
+
+이제 프로그램을 만들 수 있을 것 같네요.
+
+<br><br>
+
+방금 적은 것들이
+
+학생(Entity)의 Attribute입니다.
+
+</div>
+
+<h2>생각해 보기</h2>
+
+<div class="activity">
+
+질문
+
+<br><br>
+
+학생의 키(cm)는
+
+Attribute가 될까요?
+
+</div>
+
+<div class="tip">
+
+정답은 하나가 아니다.
+
+학생들의 의견을 먼저 들어본다.
+
+</div>
+
+<div class="box">
+
+<b>강사</b>
+
+맞습니다.
+
+학원의 업무에서
+
+학생 키를 관리해야 한다면 Attribute가 됩니다.
+
+<br><br>
+
+하지만 필요하지 않다면
+
+굳이 저장하지 않아도 됩니다.
+
+</div>
+
+<div class="memo">
+
+★★★★★ 실무 포인트
+
+모든 정보를 저장하는 것이 아니라
+
+'업무에 필요한 정보만 저장한다.'
+
+라는 개념을 심어준다.
+
+</div>
+
+<h2>실무 이야기</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+실무에서는
+
+회의를 하면서
+
+"학생 테이블에 부모님 연락처도 넣을까요?"
+
+"혈액형도 필요할까요?"
+
+같은 이야기를 정말 많이 합니다.
+
+<br><br>
+
+즉,
+
+데이터 모델링은
+
+업무를 분석하는 과정입니다.
+
+</div>
+
+<div class="exam">
+
+★★★★★
+
+Entity를 찾는 것보다
+
+Attribute를 잘 정의하는 것이
+
+더 어려운 경우가 많다.
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<title>DAY1_Script3_Part3-3_B</title>
+
+<style>
+
+body{
+    font-family:'Malgun Gothic',sans-serif;
+    background:#fafafa;
+    margin:40px;
+    line-height:1.8;
+}
+
+h1{
+    background:#2c3e50;
+    color:white;
+    padding:15px;
+}
+
+h2{
+    background:#8e44ad;
+    color:white;
+    padding:10px;
+    margin-top:35px;
+}
+
+.box{
+    background:white;
+    border-left:6px solid #8e44ad;
+    padding:18px;
+    margin:18px 0;
+}
+
+.board{
+    background:#f4f4f4;
+    border:1px solid #ccc;
+    padding:18px;
+    font-family:Consolas;
+    white-space:pre-line;
+}
+
+.tip{
+    background:#fff8dc;
+    border-left:6px solid orange;
+    padding:15px;
+    margin-top:15px;
+}
+
+.exam{
+    background:#ffecec;
+    border-left:6px solid red;
+    padding:15px;
+    margin-top:15px;
+}
+
+.memo{
+    background:#eefaf1;
+    border-left:6px solid #16a085;
+    padding:15px;
+    margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>DAY1 Script3 Part3-3-B</h1>
+
+<div class="box">
+
+<b>수업 시간</b><br>
+
+11:50 ~ 11:55
+
+<br><br>
+
+<b>학습 목표</b>
+
+<ul>
+
+<li>Domain의 의미를 이해한다.</li>
+
+<li>자료형과 입력 규칙의 필요성을 이해한다.</li>
+
+<li>실무와 연결하여 기억한다.</li>
+
+</ul>
+
+</div>
+
+<h2>규칙이 필요하다</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+<br><br>
+
+조금 전에는
+
+이름에 숫자를 넣어보고,
+
+학번에 이상한 값을 넣어봤습니다.
+
+<br><br>
+
+왜 이상했을까요?
+
+</div>
+
+<div class="tip">
+
+학생들에게 먼저 이유를 말하게 한다.
+
+정답을 바로 설명하지 않는다.
+
+</div>
+
+<div class="box">
+
+<b>예상 답변</b>
+
+<ul>
+
+<li>규칙이 없어서</li>
+
+<li>올바른 데이터가 아니다.</li>
+
+<li>검색하기 어렵다.</li>
+
+<li>관리하기 어렵다.</li>
+
+</ul>
+
+</div>
+
+<h2>Domain 소개</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+맞습니다.
+
+그래서 데이터베이스는
+
+각 속성(Attribute)마다
+
+입력할 수 있는 값의 규칙을 정해 놓습니다.
+
+<br><br>
+
+이 규칙을
+
+<b>Domain(도메인)</b>
+
+이라고 합니다.
+
+</div>
+
+<div class="board">
+
+학번
+
+↓
+
+숫자만 입력
+
+길이 : 8자리
+
+-------------------------
+
+이름
+
+↓
+
+문자만 입력
+
+최대 30자
+
+-------------------------
+
+생년월일
+
+↓
+
+날짜 형식
+
+YYYY-MM-DD
+
+</div>
+
+<div class="memo">
+
+★★★★★
+
+학생들에게
+
+"Domain = 자료형"
+
+이라고만 설명하지 않는다.
+
+자료형은 Domain의 일부일 뿐이다.
+
+Domain은
+
+'허용 가능한 값의 범위와 규칙'
+
+이라는 개념까지 포함한다.
+
+</div>
+
+<h2>실무 예시</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+회원가입 화면을 떠올려 봅시다.
+
+비밀번호를 2글자만 입력하면
+
+가입이 안 되죠?
+
+<br><br>
+
+휴대폰 번호에
+
+한글을 입력해도
+
+오류가 발생합니다.
+
+<br><br>
+
+이 역시
+
+입력 규칙을 정해 놓았기 때문입니다.
+
+</div>
+
+<div class="board">
+
+아이디
+
+6 ~ 20자
+
+-------------------
+
+비밀번호
+
+8자 이상
+
+-------------------
+
+생년월일
+
+날짜 형식
+
+-------------------
+
+전화번호
+
+숫자만 입력
+
+</div>
+
+<div class="tip">
+
+학생들이 자주 사용하는
+
+네이버, 쿠팡, 은행 앱 등을 예로 들면
+
+Domain을 매우 쉽게 이해한다.
+
+</div>
+
+<div class="exam">
+
+★★★★★ SQLD 핵심
+
+Domain
+
+↓
+
+속성이 가질 수 있는
+
+값의 범위와 규칙
+
+</div>
+
+</body>
+
+</html>

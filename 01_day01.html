@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQLD Day 1</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Pretendard","맑은 고딕",sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#333;
+    display:flex;
+}
+
+/* ===========================
+   좌측 메뉴
+=========================== */
+
+aside{
+
+    width:250px;
+    background:white;
+    height:100vh;
+    position:fixed;
+    overflow:auto;
+    border-right:1px solid #ddd;
+}
+
+.logo{
+
+    padding:25px;
+    font-size:28px;
+    font-weight:bold;
+    color:#2563eb;
+
+}
+
+nav a{
+
+    display:block;
+    padding:15px 25px;
+    text-decoration:none;
+    color:#444;
+    border-left:5px solid transparent;
+
+}
+
+nav a:hover{
+
+    background:#eef5ff;
+    border-left:5px solid #2563eb;
+
+}
+
+/* ===========================
+   본문
+=========================== */
+
+main{
+
+    margin-left:250px;
+    width:100%;
+    padding:40px;
+
+}
+
+section{
+
+    background:white;
+    margin-bottom:30px;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+
+}
+
+h1{
+
+    color:#2563eb;
+    margin-bottom:15px;
+
+}
+
+h2{
+
+    margin-bottom:15px;
+    color:#222;
+
+}
+
+ul{
+
+    margin-left:25px;
+    line-height:2;
+
+}
+
+.goal{
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.goal div{
+
+    background:#eef5ff;
+    padding:15px;
+    border-radius:10px;
+
+}
+
+.time{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+.time td{
+
+    border:1px solid #ddd;
+    padding:12px;
+
+}
+
+.note{
+
+    margin-top:20px;
+    background:#fff8dc;
+    border-left:5px solid orange;
+    padding:15px;
+}
+
+.quiz{
+
+    background:#eef8ff;
+    padding:20px;
+    border-radius:10px;
+    margin-top:20px;
+}
+
+footer{
+
+    text-align:center;
+    color:#777;
+    padding:30px;
+}
+
+</style>
+
+</head>
+<body>
+
+<aside>
+
+<div class="logo">
+SQLD
+</div>
+
+<nav>
+
+<a href="#goal">🎯 오늘 목표</a>
+<a href="#schedule">🕘 시간표</a>
+<a href="#period1">1교시</a>
+<a href="#period2">2교시</a>
+<a href="#period3">3교시</a>
+<a href="#period4">4교시</a>
+<a href="#summary">📌 핵심정리</a>
+
+</nav>
+
+</aside>
+
+<main>
+
+<section id="goal">
+
+<h1>DAY 1</h1>
+
+<h2>오늘의 목표</h2>
+
+<div class="goal">
+
+<div>✅ SQLD 시험 구조를 이해한다.</div>
+<div>✅ DBMS가 필요한 이유를 설명할 수 있다.</div>
+<div>✅ 관계형 데이터베이스를 이해한다.</div>
+<div>✅ 엔터티와 식별자를 구분한다.</div>
+
+</div>
+
+</section>
+
+<section id="schedule">
+
+<h2>오늘의 시간표</h2>
+
+<table class="time">
+
+<tr>
+<td>09:30 ~ 10:20</td>
+<td>오리엔테이션 / SQLD 소개</td>
+</tr>
+
+<tr>
+<td>10:30 ~ 11:20</td>
+<td>DBMS와 관계형 데이터베이스</td>
+</tr>
+
+<tr>
+<td>11:30 ~ 12:20</td>
+<td>엔터티 / 속성</td>
+</tr>
+
+<tr>
+<td>12:30 ~ 13:20</td>
+<td>식별자 / 미니퀴즈</td>
+</tr>
+
+</table>
+
+</section>
+
+<section id="period1">
+
+<h2>1교시 - 오리엔테이션</h2>
+
+<ul>
+
+<li>강사 소개</li>
+<li>SQLD 시험 소개</li>
+<li>합격 전략</li>
+<li>교재 소개</li>
+
+</ul>
+
+<div class="note">
+
+<strong>💡 강사 메모</strong>
+
+<p>
+
+학생들에게 "SQLD는 암기 시험이 아니라 데이터 사고방식을 배우는 과정"이라는 점을 먼저 강조한다.
+
+</p>
+
+</div>
+
+</section>
+
+<section id="period2">
+
+<h2>2교시 - 데이터베이스란?</h2>
+
+<ul>
+
+<li>파일 시스템의 문제점</li>
+<li>DBMS 등장 배경</li>
+<li>관계형 데이터베이스</li>
+<li>테이블 / 행 / 열</li>
+
+</ul>
+
+<div class="note">
+
+<strong>✏ 판서 추천</strong>
+
+<pre>
+
+파일
+
+↓
+
+파일
+
+↓
+
+파일
+
+↓
+
+중복
+
+↓
+
+DBMS
+
+↓
+
+SQL
+
+</pre>
+
+</div>
+
+</section>
+
+<section id="period3">
+
+<h2>3교시 - 엔터티와 속성</h2>
+
+<ul>
+
+<li>Entity</li>
+<li>Attribute</li>
+<li>Instance</li>
+<li>도메인</li>
+
+</ul>
+
+<div class="quiz">
+
+<h3>Mini Quiz</h3>
+
+<p>
+
+학생(Entity)의 속성(Attribute)이 아닌 것은?
+
+</p>
+
+<ol>
+
+<li>학번</li>
+<li>이름</li>
+<li>수강신청</li>
+<li>생년월일</li>
+
+</ol>
+
+</div>
+
+</section>
+
+<section id="period4">
+
+<h2>4교시 - 식별자</h2>
+
+<ul>
+
+<li>기본키</li>
+<li>후보키</li>
+<li>슈퍼키</li>
+<li>대체키</li>
+<li>외래키</li>
+
+</ul>
+
+<div class="note">
+
+<strong>⭐ 시험 포인트</strong>
+
+<p>
+
+식별자 종류 문제는 거의 매 시험 출제됩니다.
+
+</p>
+
+</div>
+
+</section>
+
+<section id="summary">
+
+<h2>오늘의 핵심 정리</h2>
+
+<ul>
+
+<li>DBMS는 데이터 중복을 줄인다.</li>
+<li>관계형 데이터베이스는 테이블 구조를 사용한다.</li>
+<li>엔터티는 관리 대상이다.</li>
+<li>속성은 엔터티의 특징이다.</li>
+<li>기본키는 엔터티를 유일하게 식별한다.</li>
+
+</ul>
+
+</section>
+
+<footer>
+
+SQLD Day 1
+
+</footer>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<title>DAY1_Script3_Part3-3_C</title>
+
+<style>
+
+body{
+    font-family:'Malgun Gothic',sans-serif;
+    background:#fafafa;
+    margin:40px;
+    line-height:1.8;
+}
+
+h1{
+    background:#2c3e50;
+    color:white;
+    padding:15px;
+}
+
+h2{
+    background:#8e44ad;
+    color:white;
+    padding:10px;
+    margin-top:35px;
+}
+
+.box{
+    background:white;
+    border-left:6px solid #8e44ad;
+    padding:18px;
+    margin:18px 0;
+}
+
+.board{
+    background:#f4f4f4;
+    border:1px solid #ccc;
+    padding:18px;
+    font-family:Consolas;
+    white-space:pre-line;
+}
+
+.quiz{
+    background:#eef7ff;
+    border-left:6px solid #3498db;
+    padding:15px;
+    margin-top:15px;
+}
+
+.tip{
+    background:#fff8dc;
+    border-left:6px solid orange;
+    padding:15px;
+    margin-top:15px;
+}
+
+.exam{
+    background:#ffecec;
+    border-left:6px solid red;
+    padding:15px;
+    margin-top:15px;
+}
+
+.memo{
+    background:#eefaf1;
+    border-left:6px solid #16a085;
+    padding:15px;
+    margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>DAY1 Script3 Part3-3-C</h1>
+
+<div class="box">
+
+<b>수업 시간</b><br>
+
+11:55 ~ 12:00
+
+<br><br>
+
+<b>학습 목표</b>
+
+<ul>
+
+<li>Entity, Attribute, Instance, Domain을 연결해서 이해한다.</li>
+
+<li>학생 스스로 개념을 구분할 수 있다.</li>
+
+<li>다음 단원(Identifier)의 필요성을 느낀다.</li>
+
+</ul>
+
+</div>
+
+<h2>전체 흐름 다시 보기</h2>
+
+<div class="board">
+
+학생
+
+↓
+
+Entity
+
+↓
+
+학번 / 이름 / 학과
+
+↓
+
+Attribute
+
+↓
+
+2026001 / 홍길동 / 컴퓨터공학과
+
+↓
+
+Instance
+
+↓
+
+학번 : 숫자 8자리
+
+이름 : 문자 30자
+
+↓
+
+Domain
+
+</div>
+
+<div class="box">
+
+<b>강사</b>
+
+여러분,
+
+이제 데이터베이스가 어떻게 구성되는지
+
+조금씩 그림이 보이지 않나요?
+
+<br><br>
+
+관리해야 하는 대상이 있고,
+
+그 대상을 설명하는 정보가 있으며,
+
+실제 데이터가 저장되고,
+
+그 데이터에는 입력 규칙이 존재합니다.
+
+</div>
+
+<h2>Mini Quiz</h2>
+
+<div class="quiz">
+
+<b>Q1.</b>
+
+'학생'은 무엇인가?
+
+<ol>
+<li>Attribute</li>
+<li>Entity</li>
+<li>Domain</li>
+<li>Instance</li>
+</ol>
+
+<b>정답 : ②</b>
+
+<hr>
+
+<b>Q2.</b>
+
+'이름'은 무엇인가?
+
+<ol>
+<li>Entity</li>
+<li>Instance</li>
+<li>Attribute</li>
+<li>Database</li>
+</ol>
+
+<b>정답 : ③</b>
+
+<hr>
+
+<b>Q3.</b>
+
+'홍길동'은 무엇인가?
+
+<ol>
+<li>Attribute</li>
+<li>Instance의 값</li>
+<li>Entity</li>
+<li>Domain</li>
+</ol>
+
+<b>정답 : ②</b>
+
+<hr>
+
+<b>Q4.</b>
+
+'이름은 최대 30자'는 무엇인가?
+
+<ol>
+<li>Entity</li>
+<li>Column</li>
+<li>Domain</li>
+<li>Instance</li>
+</ol>
+
+<b>정답 : ③</b>
+
+</div>
+
+<h2>실무 연결</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+실무에서 새로운 테이블을 만들 때도
+
+항상 같은 순서로 생각합니다.
+
+</div>
+
+<div class="board">
+
+① 무엇을 관리할 것인가?
+
+↓
+
+Entity
+
+===================
+
+② 어떤 정보를 저장할 것인가?
+
+↓
+
+Attribute
+
+===================
+
+③ 어떤 값이 저장될 것인가?
+
+↓
+
+Instance
+
+===================
+
+④ 어떤 규칙으로 저장할 것인가?
+
+↓
+
+Domain
+
+</div>
+
+<div class="memo">
+
+★★★★★ 강사 팁
+
+여기서 학생들에게
+
+"데이터베이스를 만든다고 생각하지 말고,
+
+엑셀 양식을 만든다고 생각해보세요."
+
+라고 이야기하면
+
+개념을 훨씬 쉽게 받아들인다.
+
+</div>
+
+<h2>시험 포인트 정리</h2>
+
+<div class="exam">
+
+★★★★★ SQLD 암기 포인트
+
+Entity
+
+→ 관리 대상
+
+<br><br>
+
+Attribute
+
+→ Entity를 설명하는 속성
+
+<br><br>
+
+Instance
+
+→ 실제 저장된 데이터
+
+<br><br>
+
+Domain
+
+→ Attribute가 가질 수 있는 값의 범위와 규칙
+
+</div>
+
+<h2>다음 시간 연결</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+여기서 마지막 질문 하나만 드리겠습니다.
+
+<br><br>
+
+학생이 두 명 있습니다.
+
+</div>
+
+<div class="board">
+
+2026001
+
+홍길동
+
+----------------
+
+2026002
+
+홍길동
+
+</div>
+
+<div class="box">
+
+<b>강사</b>
+
+둘 다 이름이 홍길동입니다.
+
+그럼 데이터베이스는
+
+두 사람을 어떻게 구별할까요?
+
+</div>
+
+<div class="tip">
+
+학생들이
+
+'학번이 다르네요.'
+
+라고 말하면 성공이다.
+
+절대로 Identifier를 먼저 설명하지 않는다.
+
+</div>
+
+<div class="box">
+
+<b>강사</b>
+
+맞습니다.
+
+이처럼 각각의 데이터를
+
+유일하게 구별하는 정보가 필요합니다.
+
+<br><br>
+
+다음 시간에는
+
+데이터베이스에서 가장 중요한 개념 중 하나인
+
+<b>Identifier(식별자, Key)</b>를 배우겠습니다.
+
+</div>
+
+</body>
+
+</html>

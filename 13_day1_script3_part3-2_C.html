@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<title>DAY1_Script3_Part3-2_C</title>
+
+<style>
+
+body{
+    font-family:'Malgun Gothic',sans-serif;
+    background:#fafafa;
+    margin:40px;
+    line-height:1.8;
+}
+
+h1{
+    background:#2c3e50;
+    color:white;
+    padding:15px;
+}
+
+h2{
+    background:#27ae60;
+    color:white;
+    padding:10px;
+    margin-top:35px;
+}
+
+.box{
+    background:white;
+    border-left:6px solid #27ae60;
+    padding:18px;
+    margin:18px 0;
+}
+
+.board{
+    background:#f4f4f4;
+    border:1px solid #ccc;
+    padding:18px;
+    font-family:Consolas;
+    white-space:pre-line;
+}
+
+.tip{
+    background:#fff8dc;
+    border-left:6px solid orange;
+    padding:15px;
+    margin-top:15px;
+}
+
+.exam{
+    background:#ffecec;
+    border-left:6px solid red;
+    padding:15px;
+    margin-top:15px;
+}
+
+.quiz{
+    background:#eef7ff;
+    border-left:6px solid #3498db;
+    padding:15px;
+    margin-top:15px;
+}
+
+.memo{
+    background:#eefaf1;
+    border-left:6px solid #16a085;
+    padding:15px;
+    margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>DAY1 Script3 Part3-2-C</h1>
+
+<div class="box">
+
+<b>수업 시간</b><br>
+
+11:40 ~ 11:45
+
+<br><br>
+
+<b>학습 목표</b>
+
+<ul>
+
+<li>Instance의 개념을 이해한다.</li>
+
+<li>Entity / Attribute / Instance를 구분한다.</li>
+
+<li>다음 단원(Domain)으로 자연스럽게 연결한다.</li>
+
+</ul>
+
+</div>
+
+<h2>실제 데이터가 들어온다면?</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+<br><br>
+
+지금까지는
+
+학생,
+
+학번,
+
+이름,
+
+학과...
+
+이런 항목만 있었습니다.
+
+<br><br>
+
+그런데 아직 진짜 학생은 없습니다.
+
+<br><br>
+
+그럼 실제 학생이 입학하면 어떻게 될까요?
+
+</div>
+
+<div class="board">
+
+학생
+
+──────────────────────────
+
+학번
+
+이름
+
+학과
+
+──────────────────────────
+
+(아직 값이 없음)
+
+</div>
+
+<div class="tip">
+
+학생들에게
+
+"실제 데이터를 넣어볼까요?"
+
+라고 말하며 함께 채워나간다.
+
+</div>
+
+<h2>학생 참여</h2>
+
+<div class="box">
+
+학생들에게 실제 값을 말하게 한다.
+
+<br><br>
+
+예상 답변
+
+<ul>
+
+<li>2026001</li>
+
+<li>홍길동</li>
+
+<li>컴퓨터공학과</li>
+
+</ul>
+
+</div>
+
+<div class="board">
+
+학생
+
+──────────────────────────
+
+학번        이름         학과
+
+2026001    홍길동      컴퓨터공학과
+
+──────────────────────────
+
+</div>
+
+<div class="box">
+
+<b>강사</b>
+
+<br><br>
+
+좋습니다.
+
+방금 입력한 것은
+
+'학생'이라는 개념이 아니라,
+
+실제로 존재하는 학생 한 명의 데이터입니다.
+
+</div>
+
+<h2>Instance 소개</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+데이터베이스에서는
+
+이렇게 실제 저장된 한 건의 데이터를
+
+<b>Instance(인스턴스)</b>
+
+라고 합니다.
+
+</div>
+
+<div class="board">
+
+학생
+
+↓
+
+Entity
+
+====================
+
+학번
+
+이름
+
+학과
+
+↓
+
+Attribute
+
+====================
+
+2026001
+
+홍길동
+
+컴퓨터공학과
+
+↓
+
+Instance
+
+</div>
+
+<div class="memo">
+
+학생들이
+
+"한 줄"
+
+"한 사람"
+
+"데이터 한 건"
+
+이라는 이미지를 갖도록 설명한다.
+
+</div>
+
+<h2>실무 용어 연결</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+실무에서는
+
+Instance라는 표현보다
+
+다른 말을 더 많이 듣게 됩니다.
+
+</div>
+
+<div class="board">
+
+Instance
+
+=
+
+Row
+
+=
+
+Record
+
+=
+
+Tuple
+(상황에 따라 사용)
+
+</div>
+
+<div class="tip">
+
+초급 과정에서는
+
+"실제 데이터 한 건"
+
+이라고만 기억해도 충분하다.
+
+Tuple은 이후 관계형 모델 설명 시 다시 등장한다고 예고만 한다.
+
+</div>
+
+<h2>Mini Quiz</h2>
+
+<div class="quiz">
+
+<b>Q1.</b>
+
+학생은 무엇인가?
+
+<br><br>
+
+① Attribute
+
+② Instance
+
+③ Entity
+
+④ Domain
+
+<br><br>
+
+<b>정답 : ③</b>
+
+<hr>
+
+<b>Q2.</b>
+
+학번은 무엇인가?
+
+<br><br>
+
+① Attribute
+
+② Instance
+
+③ Entity
+
+④ Database
+
+<br><br>
+
+<b>정답 : ①</b>
+
+<hr>
+
+<b>Q3.</b>
+
+'2026001 홍길동 컴퓨터공학과'는 무엇인가?
+
+<br><br>
+
+① Table
+
+② Attribute
+
+③ Instance
+
+④ Domain
+
+<br><br>
+
+<b>정답 : ③</b>
+
+</div>
+
+<h2>최종 정리</h2>
+
+<div class="board">
+
+학생
+
+↓
+
+Entity
+
+↓
+
+학번 / 이름 / 학과
+
+↓
+
+Attribute
+
+↓
+
+2026001 / 홍길동 / 컴퓨터공학과
+
+↓
+
+Instance
+
+</div>
+
+<div class="exam">
+
+★★★★★ 반드시 암기
+
+Entity → 관리 대상
+
+Attribute → 관리 대상의 속성
+
+Instance → 실제 저장된 데이터 한 건
+
+</div>
+
+<div class="box">
+
+<b>강사</b>
+
+좋습니다.
+
+그런데 마지막으로 궁금한 점이 하나 있습니다.
+
+<br><br>
+
+학번에는 왜 숫자만 들어갈까요?
+
+이름에는 왜 글자가 들어갈까요?
+
+생년월일은 왜 날짜 형식일까요?
+
+<br><br>
+
+데이터를 아무렇게나 저장하면 안 되겠죠?
+
+<br><br>
+
+바로 이런 규칙을 설명하는 개념이
+
+다음 시간에 배울 <b>Domain(도메인)</b>입니다.
+
+</div>
+
+</body>
+
+</html>

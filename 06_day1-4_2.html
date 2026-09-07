@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQLD Day1-4 - 식별자(Key)의 이해</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"Malgun Gothic",sans-serif;
+    background:#f3f5f8;
+    color:#222;
+    line-height:1.7;
+}
+
+header{
+    background:#8B0000;
+    color:white;
+    padding:40px;
+    text-align:center;
+}
+
+header h1{
+    font-size:40px;
+}
+
+header p{
+    margin-top:10px;
+    font-size:18px;
+}
+
+.container{
+    width:1200px;
+    margin:30px auto;
+}
+
+.card{
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:30px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.12);
+
+}
+
+h2{
+
+    border-left:8px solid #8B0000;
+
+    padding-left:15px;
+
+    margin-bottom:20px;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+table th{
+
+    background:#8B0000;
+
+    color:white;
+
+    padding:12px;
+
+}
+
+table td{
+
+    border:1px solid #ddd;
+
+    padding:10px;
+
+}
+
+.notice{
+
+    background:#FFF5CC;
+
+    border-left:8px solid orange;
+
+    padding:20px;
+
+    margin-top:20px;
+
+}
+
+.memo{
+
+    background:#EAF6FF;
+
+    border-left:8px solid dodgerblue;
+
+    padding:20px;
+
+    margin-top:20px;
+
+}
+
+.exam{
+
+    background:#FFEAEA;
+
+    border-left:8px solid crimson;
+
+    padding:20px;
+
+    margin-top:20px;
+
+}
+
+.board{
+
+    background:#111;
+
+    color:#7CFC00;
+
+    font-family:Consolas;
+
+    padding:20px;
+
+    margin-top:20px;
+
+    white-space:pre-wrap;
+
+}
+
+.question{
+
+    background:#F7F7F7;
+
+    border-radius:10px;
+
+    padding:15px;
+
+    margin-top:15px;
+
+}
+
+details{
+
+    margin-top:15px;
+
+}
+
+summary{
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+}
+
+.quiz{
+
+    background:#EEF8EE;
+
+    border-left:8px solid green;
+
+    padding:20px;
+
+    margin-top:20px;
+
+}
+
+footer{
+
+    background:#333;
+
+    color:white;
+
+    text-align:center;
+
+    padding:30px;
+
+    margin-top:50px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>DAY 1-4</h1>
+
+<p>식별자(Key)의 이해</p>
+
+<p>12:30 ~ 13:20 (50분)</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>🎯 학습 목표</h2>
+
+<ul>
+
+<li>식별자의 의미를 설명할 수 있다.</li>
+
+<li>유일성과 최소성을 설명할 수 있다.</li>
+
+<li>기본키(PK), 후보키, 슈퍼키, 대체키, 외래키를 구분할 수 있다.</li>
+
+<li>SQLD 기출 문제를 해결할 수 있다.</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>⏰ 시간 계획</h2>
+
+<table>
+
+<tr>
+
+<th>시간</th>
+
+<th>내용</th>
+
+</tr>
+
+<tr>
+
+<td>12:30 ~ 12:35</td>
+
+<td>도입 : 식별자가 왜 필요한가?</td>
+
+</tr>
+
+<tr>
+
+<td>12:35 ~ 12:50</td>
+
+<td>식별자의 개념</td>
+
+</tr>
+
+<tr>
+
+<td>12:50 ~ 13:05</td>
+
+<td>PK / 후보키 / 슈퍼키 / 대체키 / FK</td>
+
+</tr>
+
+<tr>
+
+<td>13:05 ~ 13:15</td>
+
+<td>퀴즈 및 SQLD 기출 포인트</td>
+
+</tr>
+
+<tr>
+
+<td>13:15 ~ 13:20</td>
+
+<td>Day1 총정리</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="card">
+
+<h2>🎤 강사 대본 (도입)</h2>
+
+<p>
+
+"여러분 반에 김민수라는 학생이 두 명 있다고 가정해 보겠습니다."
+
+</p>
+
+<br>
+
+<p>
+
+학생들에게 질문한다.
+
+</p>
+
+<div class="question">
+
+❓
+
+그럼 두 학생을 어떻게 구분할까요?
+
+</div>
+
+<br>
+
+<p>
+
+학생들이
+
+'학번'
+
+'전화번호'
+
+'주민번호'
+
+등을 말하도록 유도한다.
+
+</p>
+
+<br>
+
+<p>
+
+그 다음 이렇게 이야기한다.
+
+</p>
+
+<div class="memo">
+
+<b>강사 멘트</b>
+
+<br><br>
+
+맞습니다.
+
+우리는 사람을 구분하기 위해
+
+"식별 가능한 값"
+
+을 사용합니다.
+
+<br><br>
+
+데이터베이스도 마찬가지입니다.
+
+<br><br>
+
+수많은 데이터 중에서
+
+딱 하나를 찾기 위해
+
+식별자(Key)가 필요합니다.
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>✏ 판서</h2>
+
+<div class="board">
+
+학생
+
+----------------------------------
+
+학번        이름
+
+----------------------------------
+
+2026001     김민수
+
+2026002     김민수
+
+2026003     이영희
+
+----------------------------------
+
+↓
+
+이름으로는 구분 불가능
+
+↓
+
+학번 필요
+
+↓
+
+PK
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🙋 학생 질문 유도</h2>
+
+<div class="question">
+
+이름을 기본키(PK)로 사용할 수 있을까요?
+
+</div>
+
+<div class="question">
+
+전화번호를 PK로 사용하면 안 되는 이유는 무엇일까요?
+
+</div>
+
+<div class="question">
+
+이메일은 항상 후보키가 될까요?
+
+</div>
+
+<div class="question">
+
+회사에서는 주민등록번호를 PK로 사용할까요?
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>📖 식별자(Key)의 종류</h2>
+
+<p>
+
+식별자는 하나의 데이터를 다른 데이터와 구분하기 위한 속성입니다.
+
+SQLD에서는 식별자의 종류를 정확하게 구분하는 문제가 자주 출제됩니다.
+
+</p>
+
+<table>
+
+<tr>
+
+<th>종류</th>
+
+<th>설명</th>
+
+</tr>
+
+<tr>
+
+<td>기본키(PK)</td>
+
+<td>대표로 선택된 식별자</td>
+
+</tr>
+
+<tr>
+
+<td>후보키(Candidate Key)</td>
+
+<td>기본키가 될 수 있는 후보</td>
+
+</tr>
+
+<tr>
+
+<td>슈퍼키(Super Key)</td>
+
+<td>유일성만 만족하는 키</td>
+
+</tr>
+
+<tr>
+
+<td>대체키(Alternate Key)</td>
+
+<td>후보키 중 기본키가 되지 못한 키</td>
+
+</tr>
+
+<tr>
+
+<td>외래키(Foreign Key)</td>
+
+<td>다른 테이블의 기본키를 참조하는 키</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="card">
+
+<h2>🎤 강사 설명</h2>
+
+<p>
+
+학생들이 가장 많이 헷갈리는 것이
+
+<b>후보키와 슈퍼키</b>입니다.
+
+</p>
+
+<br>
+
+<p>
+
+이 부분은 암기시키기보다
+
+직접 예제를 통해 설명하는 것이 훨씬 효과적입니다.
+
+</p>
+
+<div class="memo">
+
+<b>강사 멘트</b>
+
+<br><br>
+
+"여러분."
+
+<br>
+
+"학생을 구분할 수 있는 방법이"
+
+<br>
+
+'학번'
+
+'주민등록번호'
+
+'이메일'
+
+세 가지가 있다고 가정해 봅시다.
+
+<br><br>
+
+이 셋 모두
+
+학생을 구분할 수 있습니다.
+
+<br><br>
+
+그러면
+
+후보키가 됩니다.
+
+<br><br>
+
+그중에서
+
+학번을 대표로 선택하면
+
+그 순간
+
+학번은 기본키(PK)가 됩니다.
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>✏️ 판서 예시</h2>
+
+<div class="board">
+
+학생
+
+-------------------------------------
+
+학번
+
+주민번호
+
+이메일
+
+↓
+
+모두 유일
+
+↓
+
+후보키
+
+↓
+
+대표 선택
+
+↓
+
+PK
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>⚠️ 학생들이 가장 많이 틀리는 부분</h2>
+
+<div class="exam">
+
+<h3>★★★★★ SQLD 초빈출</h3>
+
+<br>
+
+<b>후보키</b>
+
+<ul>
+
+<li>유일성 O</li>
+
+<li>최소성 O</li>
+
+</ul>
+
+<br>
+
+<b>슈퍼키</b>
+
+<ul>
+
+<li>유일성 O</li>
+
+<li>최소성 X</li>
+
+</ul>
+
+</div>
+
+<div class="notice">
+
+예를 들어
+
+<b>(학번)</b>은 후보키입니다.
+
+<br><br>
+
+하지만
+
+<b>(학번 + 이름)</b>도
+
+학생을 구분할 수 있습니다.
+
+<br><br>
+
+그러나
+
+'이름'이 없어도
+
+이미 학번만으로 구분 가능하므로
+
+<b>최소성을 만족하지 않습니다.</b>
+
+<br><br>
+
+따라서
+
+<b>(학번 + 이름)</b>은
+
+슈퍼키이지
+
+후보키는 아닙니다.
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>💼 실무 이야기</h2>
+
+<div class="memo">
+
+<b>실무에서는...</b>
+
+<br><br>
+
+예전에는
+
+주민등록번호를
+
+기본키처럼 사용하는 시스템도 있었습니다.
+
+<br><br>
+
+하지만
+
+개인정보 보호 문제 때문에
+
+지금은 거의 사용하지 않습니다.
+
+<br><br>
+
+대신
+
+AUTO_INCREMENT
+
+또는
+
+UUID를 많이 사용합니다.
+
+<br><br>
+
+※ 시험 범위는 아니지만
+
+실무에서는 자주 등장합니다.
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🙋 학생 질문 유도</h2>
+
+<div class="question">
+
+Q.
+
+휴대폰 번호는 기본키가 될 수 있을까요?
+
+</div>
+
+<br>
+
+<p>
+
+학생 의견을 먼저 듣는다.
+
+</p>
+
+<details>
+
+<summary>강사 설명</summary>
+
+전화번호는 변경될 수 있습니다.
+
+식별자는 가능하면
+
+변하지 않는 값이 좋습니다.
+
+</details>
+
+<br>
+
+<div class="question">
+
+Q.
+
+이메일은 기본키가 될까요?
+
+</div>
+
+<details>
+
+<summary>강사 설명</summary>
+
+회사 정책에 따라 다르지만
+
+변경 가능성이 있기 때문에
+
+대표 기본키로는 잘 사용하지 않습니다.
+
+</details>
+
+</div>
+
+<div class="card">
+
+<h2>⭐ SQLD 시험 포인트</h2>
+
+<div class="exam">
+
+★★★★★
+
+<br><br>
+
+후보키
+
+=
+
+유일성 + 최소성
+
+<br><br>
+
+슈퍼키
+
+=
+
+유일성
+
+<br><br>
+
+외래키
+
+=
+
+다른 테이블의 기본키 참조
+
+<br><br>
+
+대체키
+
+=
+
+선택되지 않은 후보키
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>📝 Mini Quiz</h2>
+
+<div class="quiz">
+
+<h3>객관식</h3>
+
+<hr>
+
+<p>
+
+<b>1.</b> 다음 중 후보키의 조건으로 올바른 것은?
+
+</p>
+
+<ol>
+
+<li>유일성</li>
+
+<li>최소성</li>
+
+<li>유일성과 최소성</li>
+
+<li>참조 무결성</li>
+
+</ol>
+
+<details>
+
+<summary>정답 보기</summary>
+
+③ 유일성과 최소성
+
+</details>
+
+<hr>
+
+<p>
+
+<b>2.</b> 다음 중 다른 테이블의 기본키를 참조하는 키는?
+
+</p>
+
+<ol>
+
+<li>기본키</li>
+
+<li>후보키</li>
+
+<li>외래키</li>
+
+<li>슈퍼키</li>
+
+</ol>
+
+<details>
+
+<summary>정답 보기</summary>
+
+③ 외래키
+
+</details>
+
+<hr>
+
+<p>
+
+<b>3.</b> 다음 중 슈퍼키에 대한 설명으로 맞는 것은?
+
+</p>
+
+<ol>
+
+<li>유일성과 최소성을 모두 만족한다.</li>
+
+<li>유일성만 만족한다.</li>
+
+<li>대표 기본키이다.</li>
+
+<li>외래키를 의미한다.</li>
+
+</ol>
+
+<details>
+
+<summary>정답 보기</summary>
+
+② 유일성만 만족
+
+</details>
+
+<hr>
+
+<p>
+
+<b>4.</b> 후보키 중 대표로 선택된 키는?
+
+</p>
+
+<ol>
+
+<li>슈퍼키</li>
+
+<li>대체키</li>
+
+<li>기본키</li>
+
+<li>외래키</li>
+
+</ol>
+
+<details>
+
+<summary>정답 보기</summary>
+
+③ 기본키
+
+</details>
+
+<hr>
+
+<p>
+
+<b>5.</b>
+
+다음 중 후보키가 아닌 것은?
+
+</p>
+
+<div class="board">
+
+학생
+
+----------------------------
+
+학번
+
+이름
+
+----------------------------
+
+</div>
+
+<ol>
+
+<li>학번</li>
+
+<li>학번+이름</li>
+
+<li>없음</li>
+
+<li>둘 다 후보키</li>
+
+</ol>
+
+<details>
+
+<summary>정답 보기</summary>
+
+②
+
+학번만으로 이미 식별 가능하므로
+
+(학번+이름)은 최소성을 만족하지 않는다.
+
+</details>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>⭕ OX Quiz</h2>
+
+<div class="quiz">
+
+<p>① 후보키는 최소성을 만족한다. ( O )</p>
+
+<p>② 슈퍼키는 최소성을 만족해야 한다. ( X )</p>
+
+<p>③ 기본키는 후보키 중 하나이다. ( O )</p>
+
+<p>④ 외래키는 다른 테이블의 기본키를 참조한다. ( O )</p>
+
+<p>⑤ 이름은 항상 기본키가 될 수 있다. ( X )</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🎯 마지막 5분 복습</h2>
+
+<div class="exam">
+
+<h3>학생들에게 질문</h3>
+
+<br>
+
+<p>
+
+Q1.
+
+식별자는 왜 필요한가요?
+
+</p>
+
+<hr>
+
+<p>
+
+Q2.
+
+후보키의 조건은?
+
+</p>
+
+<hr>
+
+<p>
+
+Q3.
+
+슈퍼키와 후보키의 차이는?
+
+</p>
+
+<hr>
+
+<p>
+
+Q4.
+
+외래키는 무엇을 참조하나요?
+
+</p>
+
+<hr>
+
+<p>
+
+Q5.
+
+실무에서는 왜 주민등록번호를 기본키로 잘 사용하지 않을까요?
+
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>📌 DAY 1 전체 정리</h2>
+
+<div class="board">
+
+파일 관리
+
+↓
+
+DBMS
+
+↓
+
+관계형 데이터베이스
+
+↓
+
+테이블
+
+↓
+
+Entity
+
+↓
+
+Attribute
+
+↓
+
+Instance
+
+↓
+
+Identifier(Key)
+
+↓
+
+Relationship
+
+↓
+
+ERD
+
+↓
+
+SQL
+
+</div>
+
+<br>
+
+<p>
+
+오늘은 SQL을 배우기 전에
+
+데이터베이스를 이해하기 위한 가장 중요한 기초 개념을 배웠습니다.
+
+</p>
+
+<p>
+
+내일부터는 이 개념들을 바탕으로
+
+ERD(개체-관계 다이어그램)를 배우고,
+
+그 이후 SQL 문법으로 자연스럽게 이어집니다.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🎤 강사 마무리 멘트</h2>
+
+<div class="memo">
+
+오늘은 SQL 문법을 하나도 배우지 않았지만,
+
+오히려 오늘 내용이 가장 중요합니다.
+
+SQL은 문법을 외우는 것이 아니라
+
+데이터를 어떻게 설계하고 관리하는지 이해하는 과정입니다.
+
+다음 시간부터 배우는 ERD와 SQL도
+
+오늘 배운 엔터티, 속성, 식별자를 기반으로 합니다.
+
+오늘 내용을 확실히 이해하면
+
+SQLD 시험뿐 아니라 실무에서도 큰 도움이 됩니다.
+
+수고 많으셨습니다.
+
+</div>
+
+</div>
+
+<footer>
+
+SQLD Day1-4
+
+식별자(Key)의 이해
+
+Made for SQLD Instructor
+
+</footer>
+
+</div>
+
+</body>
+
+</html>

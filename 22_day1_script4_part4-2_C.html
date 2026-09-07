@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<title>DAY1_Script4_Part4-2_C</title>
+
+<style>
+
+body{
+    font-family:'Malgun Gothic',sans-serif;
+    background:#fafafa;
+    margin:40px;
+    line-height:1.8;
+}
+
+h1{
+    background:#34495e;
+    color:white;
+    padding:15px;
+}
+
+h2{
+    background:#16a085;
+    color:white;
+    padding:10px;
+    margin-top:35px;
+}
+
+.box{
+    background:white;
+    border-left:6px solid #16a085;
+    padding:18px;
+    margin:18px 0;
+}
+
+.activity{
+    background:#eef7ff;
+    border-left:6px solid #3498db;
+    padding:18px;
+    margin:18px 0;
+}
+
+.board{
+    background:#f4f4f4;
+    border:1px solid #ccc;
+    padding:18px;
+    font-family:Consolas;
+    white-space:pre-line;
+}
+
+.answer{
+    background:#eefaf1;
+    border-left:6px solid #27ae60;
+    padding:18px;
+    margin:18px 0;
+}
+
+.tip{
+    background:#fff8dc;
+    border-left:6px solid orange;
+    padding:18px;
+    margin:18px 0;
+}
+
+.exam{
+    background:#ffecec;
+    border-left:6px solid red;
+    padding:18px;
+    margin:18px 0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>DAY1 Script4 Part4-2-C</h1>
+
+<div class="box">
+
+<b>수업 시간</b><br>
+
+12:50 ~ 13:00
+
+<br><br>
+
+<b>학습 목표</b>
+
+<ul>
+
+<li>배운 개념을 실제 업무에 적용한다.</li>
+
+<li>학생 스스로 Entity와 Attribute를 설계해본다.</li>
+
+<li>다음 시간의 데이터 모델링 감각을 키운다.</li>
+
+</ul>
+
+</div>
+
+<h2>미니 실습</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+<br><br>
+
+이제 여러분이
+
+데이터 모델러라고 생각해 보겠습니다.
+
+<br><br>
+
+학원이 새로 문을 열었습니다.
+
+학생 정보를 관리하려면
+
+무엇부터 생각해야 할까요?
+
+</div>
+
+<div class="activity">
+
+학생들에게 1분 정도 생각할 시간을 준다.
+
+<br><br>
+
+질문
+
+<b>"무엇을 관리해야 하나요?"</b>
+
+</div>
+
+<div class="answer">
+
+예상 답변
+
+<ul>
+
+<li>학생</li>
+
+<li>강사</li>
+
+<li>강의</li>
+
+<li>강의실</li>
+
+<li>수강신청</li>
+
+</ul>
+
+</div>
+
+<h2>판서</h2>
+
+<div class="board">
+
+학생
+
+강사
+
+강의
+
+강의실
+
+수강신청
+
+↓
+
+Entity 후보
+
+</div>
+
+<div class="box">
+
+<b>강사</b>
+
+좋습니다.
+
+그럼
+
+학생(Entity)은
+
+어떤 정보를 가져야 할까요?
+
+</div>
+
+<div class="activity">
+
+학생들이 자유롭게 대답하도록 유도한다.
+
+</div>
+
+<div class="answer">
+
+예상 답변
+
+<ul>
+
+<li>학번</li>
+
+<li>이름</li>
+
+<li>전화번호</li>
+
+<li>생년월일</li>
+
+<li>이메일</li>
+
+</ul>
+
+</div>
+
+<div class="board">
+
+학생
+
+──────────────
+
+학번
+
+이름
+
+전화번호
+
+생년월일
+
+이메일
+
+↓
+
+Attribute
+
+</div>
+
+<div class="tip">
+
+★★★★★
+
+여기서는
+
+정답을 알려주는 시간이 아니다.
+
+학생들의 의견을 받아
+
+함께 모델을 만들어가는 시간이다.
+
+</div>
+
+<div class="exam">
+
+★★★★★ 강의 핵심
+
+데이터 모델링은
+
+정답을 외우는 것이 아니라
+
+업무를 분석하는 과정이다.
+
+</div>
+
+<div class="box">
+
+<b>강사</b>
+
+<br><br>
+
+여러분이 방금 한 일이
+
+실제 데이터 모델러들이
+
+가장 먼저 하는 업무입니다.
+
+<br><br>
+
+'무엇을 관리할 것인가?'
+
+'어떤 정보를 저장할 것인가?'
+
+를 결정하는 것이죠.
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang='ko'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>SQLD DAY1-2</title>
+<style>
+body{font-family:'Malgun Gothic',sans-serif;background:#f3f5f8;margin:0;color:#222}
+header{background:#0f766e;color:#fff;padding:24px}
+main{max-width:1000px;margin:auto;padding:24px}
+section{background:#fff;margin:18px 0;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+h2{border-bottom:2px solid #ddd;padding-bottom:6px}
+.board{background:#111;color:#9eff8f;padding:12px;font-family:monospace;white-space:pre}
+.note{background:#ecfeff;border-left:5px solid #06b6d4;padding:12px}
+.warn{background:#fff1f2;border-left:5px solid #ef4444;padding:12px}
+details{margin:8px 0} summary{cursor:pointer;font-weight:bold}
+</style></head><body>
+<header><h1>SQLD DAY1-2</h1><p>관계형 데이터베이스와 기본 용어 (10:30~11:20)</p></header>
+<main>
+<section><h2>🎯 학습목표</h2><ul>
+<li>관계형 데이터베이스(RDBMS)의 특징을 이해한다.</li>
+<li>테이블, 행(Row), 열(Column), 도메인을 설명할 수 있다.</li>
+<li>Relation, Tuple, Attribute 용어를 구분한다.</li></ul></section>
+
+<section><h2>🎤 강사 대본</h2>
+<details open><summary>복습 (5분)</summary>
+<p>"지난 시간 DBMS가 왜 필요하다고 했죠?" 학생들의 답을 먼저 듣고 '중복 감소'를 칠판에 적는다.</p>
+</details>
+<details><summary>관계형 데이터베이스 (15분)</summary>
+<p>학생 테이블 하나를 보여주며 '엑셀과 비슷하지만 데이터 간 관계를 관리하는 것이 핵심'이라고 설명한다.</p>
+</details>
+<div class='note'><b>강사 메모</b><br>정의를 암기시키기보다 표를 보며 용어를 연결시키는 데 집중한다.</div>
+</section>
+
+<section><h2>✏️ 판서</h2>
+<div class='board'>학생
++------+--------+------+
+|학번 |이름    |학과 |
++------+--------+------+
+|1001 |김철수 |컴공 |
+|1002 |이영희 |전자 |
++------+--------+------+
+
+열(Column)=Attribute
+행(Row)=Tuple
+표(Table)=Relation</div>
+</section>
+
+<section><h2>🙋 질문 유도</h2>
+<ul>
+<li>행 하나를 삭제하면 무엇이 없어질까요?</li>
+<li>열 하나를 추가하면 어떤 정보가 늘어날까요?</li>
+<li>왜 모든 정보를 한 테이블에 넣지 않을까요?</li>
+</ul>
+</section>
+
+<section class='warn'><h2>⭐ 시험 포인트</h2>
+<p>Relation / Tuple / Attribute / Domain 용어 문제는 매우 자주 출제된다.</p>
+</section>
+
+<section><h2>📝 Mini Quiz</h2>
+<p>다음 중 Attribute에 해당하는 것은?</p>
+<ol><li>학생</li><li>이름</li><li>김철수</li><li>학생관리</li></ol>
+<details><summary>정답 보기</summary><p><b>② 이름</b> — 열(Column)의 이름이므로 Attribute이다.</p></details>
+</section>
+
+<section><h2>📌 마무리</h2>
+<p>오늘은 관계형 데이터베이스의 가장 기본이 되는 용어를 배웠습니다. 다음 시간에는 엔터티(Entity)와 속성(Attribute)를 더 깊게 다루며 SQLD 1과목의 핵심으로 들어갑니다.</p>
+</section>
+</main></body></html>

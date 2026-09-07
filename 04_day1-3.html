@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SQLD DAY1-3</title>
+<style>
+body{margin:0;font-family:'Malgun Gothic',sans-serif;background:#f4f6fa;color:#222}
+header{background:#7c3aed;color:#fff;padding:24px}
+main{max-width:1000px;margin:auto;padding:24px}
+section{background:#fff;margin:18px 0;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+h2{border-bottom:2px solid #ddd;padding-bottom:6px}
+.board{background:#111;color:#9eff8f;padding:12px;white-space:pre;font-family:monospace}
+.tip{background:#ecfdf5;border-left:5px solid #10b981;padding:12px}
+.exam{background:#fff7ed;border-left:5px solid #f97316;padding:12px}
+details{margin-top:8px} summary{cursor:pointer;font-weight:bold}
+</style></head>
+<body>
+<header>
+<h1>SQLD DAY1-3</h1>
+<p>엔터티(Entity)와 속성(Attribute) (11:30~12:20)</p>
+</header>
+<main>
+
+<section>
+<h2>🎯 학습 목표</h2>
+<ul>
+<li>엔터티(Entity)의 의미를 설명할 수 있다.</li>
+<li>속성(Attribute)과 인스턴스(Instance)를 구분할 수 있다.</li>
+<li>SQLD에서 자주 나오는 엔터티의 특징을 이해한다.</li>
+</ul>
+</section>
+
+<section>
+<h2>🎤 강사 대본</h2>
+<details open>
+<summary>도입 (5분)</summary>
+<p>"학생 테이블에서 '학생'이 엔터티일까요? '김철수'가 엔터티일까요?"라고 질문을 던진다.</p>
+<p>학생들의 의견을 들은 뒤, 관리 대상 자체가 엔터티이고 '김철수'는 그 엔터티의 한 인스턴스라고 연결한다.</p>
+</details>
+
+<details>
+<summary>핵심 설명 (20분)</summary>
+<p>엔터티는 <b>관리해야 할 대상</b>이다.</p>
+<ul>
+<li>학생</li>
+<li>교수</li>
+<li>과목</li>
+<li>주문</li>
+</ul>
+<p>속성은 엔터티의 특징(학번, 이름, 학과 등)이며, 인스턴스는 실제 데이터 한 건이다.</p>
+</details>
+
+<div class="tip">
+<b>💡 강사 메모</b><br>
+학생들이 가장 많이 헷갈리는 부분은 <b>엔터티와 인스턴스의 차이</b>이다. 용어를 정의로 암기시키기보다 표를 보며 반복 질문하는 방식이 효과적이다.
+</div>
+</section>
+
+<section>
+<h2>✏️ 판서</h2>
+<div class="board">엔터티 : 학생
+
+속성 : 학번 / 이름 / 학과
+
+인스턴스
+--------------------------------
+1001  김철수  컴공
+1002  이영희  전자
+--------------------------------
+
+학생 = Entity
+학번 = Attribute
+1001 김철수 = Instance
+</div>
+</section>
+
+<section>
+<h2>🙋 학생 질문 유도</h2>
+<ul>
+<li>"'자동차'는 엔터티일까요?"</li>
+<li>"'소나타'는 엔터티일까요, 인스턴스일까요?"</li>
+<li>"'색상'은 무엇에 해당할까요?"</li>
+</ul>
+</section>
+
+<section class="exam">
+<h2>⭐ 시험 포인트</h2>
+<p>엔터티의 특징(업무상 관리 대상, 식별 가능, 인스턴스 존재)과 Attribute / Instance 구분은 자주 출제된다.</p>
+</section>
+
+<section>
+<h2>📝 Mini Quiz</h2>
+<p><b>Q1.</b> 다음 중 엔터티(Entity)는?</p>
+<ol>
+<li>홍길동</li>
+<li>이름</li>
+<li>학생</li>
+<li>컴퓨터공학과</li>
+</ol>
+<details>
+<summary>정답 보기</summary>
+<p><b>③ 학생</b></p>
+</details>
+
+<p><b>Q2.</b> 다음 중 속성(Attribute)은?</p>
+<ol>
+<li>학생</li>
+<li>1001</li>
+<li>학번</li>
+<li>김철수</li>
+</ol>
+<details>
+<summary>정답 보기</summary>
+<p><b>③ 학번</b></p>
+</details>
+</section>
+
+<section>
+<h2>📌 마무리</h2>
+<p>엔터티는 관리 대상, 속성은 그 대상의 특징, 인스턴스는 실제 데이터입니다. 이 세 가지를 명확히 구분해야 이후 식별자와 ERD를 쉽게 이해할 수 있습니다.</p>
+</section>
+
+</main>
+</body></html>

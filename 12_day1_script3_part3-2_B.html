@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<title>DAY1_Script3_Part3-2_B</title>
+
+<style>
+
+body{
+    font-family:'Malgun Gothic',sans-serif;
+    background:#fafafa;
+    margin:40px;
+    line-height:1.8;
+}
+
+h1{
+    background:#2c3e50;
+    color:white;
+    padding:15px;
+}
+
+h2{
+    background:#27ae60;
+    color:white;
+    padding:10px;
+    margin-top:35px;
+}
+
+.box{
+    background:white;
+    border-left:6px solid #27ae60;
+    padding:18px;
+    margin:18px 0;
+}
+
+.board{
+    background:#f4f4f4;
+    border:1px solid #ccc;
+    padding:18px;
+    font-family:Consolas;
+    white-space:pre-line;
+}
+
+.tip{
+    background:#fff8dc;
+    border-left:6px solid orange;
+    padding:15px;
+    margin-top:15px;
+}
+
+.exam{
+    background:#ffecec;
+    border-left:6px solid red;
+    padding:15px;
+    margin-top:15px;
+}
+
+.question{
+    background:#eef7ff;
+    border-left:6px solid #3498db;
+    padding:15px;
+    margin-top:15px;
+}
+
+.note{
+    background:#eefaf1;
+    border-left:6px solid #16a085;
+    padding:15px;
+    margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>DAY1 Script3 Part3-2-B</h1>
+
+<div class="box">
+
+<b>수업 시간</b><br>
+
+11:35 ~ 11:40
+
+<br><br>
+
+<b>학습 목표</b>
+
+<ul>
+
+<li>Attribute의 의미를 정확하게 이해한다.</li>
+
+<li>Entity와 Attribute를 구분할 수 있다.</li>
+
+<li>SQLD 용어를 자연스럽게 연결한다.</li>
+
+</ul>
+
+</div>
+
+<h2>이름 붙이기</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+<br><br>
+
+조금 전 여러분이 말했던
+
+학번,
+
+이름,
+
+학과,
+
+전화번호...
+
+<br><br>
+
+이처럼
+
+Entity를 설명하는 각각의 정보를
+
+데이터베이스에서는
+
+<b>Attribute(속성)</b>
+
+이라고 합니다.
+
+</div>
+
+<div class="board">
+
+학생
+
+(Entity)
+
+──────────────────
+
+학번
+
+이름
+
+학과
+
+전화번호
+
+주소
+
+이메일
+
+──────────────────
+
+↑
+
+Attribute
+
+</div>
+
+<div class="tip">
+
+학생들에게
+
+"학번은 Entity일까요?
+
+Attribute일까요?"
+
+를 반드시 질문한다.
+
+</div>
+
+<h2>이해 확인</h2>
+
+<div class="question">
+
+Q1.
+
+학생은 무엇일까요?
+
+</div>
+
+<div class="box">
+
+예상 답변
+
+<br><br>
+
+Entity
+
+</div>
+
+<div class="question">
+
+Q2.
+
+이름은 무엇일까요?
+
+</div>
+
+<div class="box">
+
+예상 답변
+
+<br><br>
+
+Attribute
+
+</div>
+
+<div class="question">
+
+Q3.
+
+학과는 무엇일까요?
+
+</div>
+
+<div class="box">
+
+예상 답변
+
+<br><br>
+
+Attribute
+
+</div>
+
+<div class="question">
+
+Q4.
+
+전화번호는 무엇일까요?
+
+</div>
+
+<div class="box">
+
+예상 답변
+
+<br><br>
+
+Attribute
+
+</div>
+
+<h2>판서</h2>
+
+<div class="board">
+
+학생(Entity)
+
+│
+
+├── 학번 (Attribute)
+
+├── 이름 (Attribute)
+
+├── 학과 (Attribute)
+
+├── 전화번호 (Attribute)
+
+└── 이메일 (Attribute)
+
+</div>
+
+<div class="note">
+
+학생들에게
+
+Entity 하나에는
+
+여러 개의 Attribute가 존재한다는 점을
+
+강조한다.
+
+</div>
+
+<h2>실무 이야기</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+<br><br>
+
+실무에서는
+
+"컬럼(Column)을 하나 추가해주세요."
+
+라는 말을 자주 합니다.
+
+<br><br>
+
+데이터 모델링에서는
+
+Attribute라는 용어를 많이 사용하고,
+
+실제 데이터베이스에서는
+
+Column이라는 표현을 많이 사용합니다.
+
+</div>
+
+<div class="board">
+
+데이터 모델링
+
+↓
+
+Attribute
+
+==================
+
+데이터베이스
+
+↓
+
+Column
+
+</div>
+
+<div class="tip">
+
+SQLD 시험에서는
+
+Attribute,
+
+Column을
+
+구분해서 묻는 문제도 있으므로
+
+같은 의미로 사용되는 상황을
+
+미리 설명해 두면 좋다.
+
+</div>
+
+<div class="exam">
+
+★★★★★ SQLD 시험 포인트
+
+Entity
+
+↓
+
+관리 대상
+
+<br><br>
+
+Attribute
+
+↓
+
+Entity를 설명하는 정보
+
+<br><br>
+
+실제 DB에서는
+
+Attribute가
+
+Column으로 구현된다.
+
+</div>
+
+<div class="box">
+
+<b>강사</b>
+
+<br><br>
+
+좋습니다.
+
+그런데...
+
+아직 이상한 점이 하나 있습니다.
+
+<br><br>
+
+학번에는
+
+실제 값이 없네요.
+
+이름에도
+
+아직 실제 사람이 없습니다.
+
+<br><br>
+
+실제 데이터가 들어오면
+
+어떻게 될까요?
+
+</div>
+
+</body>
+
+</html>

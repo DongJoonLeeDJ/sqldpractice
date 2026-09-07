@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<title>DAY1_Script3_Part3-1_C</title>
+
+<style>
+
+body{
+    font-family:'Malgun Gothic',sans-serif;
+    background:#fafafa;
+    margin:40px;
+    line-height:1.8;
+}
+
+h1{
+    background:#2c3e50;
+    color:white;
+    padding:15px;
+}
+
+h2{
+    background:#3498db;
+    color:white;
+    padding:10px;
+    margin-top:35px;
+}
+
+.box{
+    background:white;
+    border-left:6px solid #3498db;
+    padding:18px;
+    margin:18px 0;
+}
+
+.board{
+    background:#f4f4f4;
+    border:1px solid #ccc;
+    padding:18px;
+    font-family:Consolas;
+    white-space:pre-line;
+}
+
+.tip{
+    background:#fff8dc;
+    border-left:6px solid orange;
+    padding:15px;
+    margin-top:15px;
+}
+
+.exam{
+    background:#ffecec;
+    border-left:6px solid red;
+    padding:15px;
+    margin-top:15px;
+}
+
+.note{
+    background:#eef7ff;
+    border-left:6px solid #2980b9;
+    padding:15px;
+    margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>DAY1 Script3 Part3-1-C</h1>
+
+<div class="box">
+
+<b>학습 목표</b>
+
+<ul>
+
+<li>Entity라는 용어를 자연스럽게 연결한다.</li>
+
+<li>SQLD 교재의 정의를 쉽게 이해한다.</li>
+
+<li>Entity와 Table을 혼동하지 않도록 한다.</li>
+
+</ul>
+
+</div>
+
+<h2>Entity라는 이름 붙이기</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+<br><br>
+
+좋습니다.
+
+우리는 지금까지
+
+학교,
+
+회사,
+
+병원의
+
+공통점을 찾아봤습니다.
+
+<br><br>
+
+공통점은 무엇이었죠?
+
+</div>
+
+<div class="tip">
+
+학생들이
+
+"관리 대상"
+
+이라고 대답하도록 유도한다.
+
+대답이 없으면 판서를 가리키며 힌트를 준다.
+
+</div>
+
+<div class="board">
+
+공통점
+
+↓
+
+관리 대상
+
+</div>
+
+<div class="box">
+
+<b>강사</b>
+
+<br><br>
+
+맞습니다.
+
+데이터베이스에서는
+
+이러한 관리 대상을
+
+<b>Entity(엔터티)</b>
+
+라고 부릅니다.
+
+</div>
+
+<h2>교재 정의 연결</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+<br><br>
+
+이제 교재를 한번 볼까요?
+
+<br><br>
+
+교재에는
+
+"업무상 관리해야 하는 대상"
+
+이라고 되어 있습니다.
+
+<br><br>
+
+어렵게 느껴질 수도 있지만,
+
+방금 우리가 이야기한
+
+'관리 대상'
+
+과 같은 의미입니다.
+
+</div>
+
+<div class="note">
+
+학생들이
+
+정의를 외우려고 하면
+
+"외우지 마세요."
+
+"관리 대상이라는 말만 기억하세요."
+
+라고 이야기해준다.
+
+</div>
+
+<h2>실무 예시</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+질문 하나 드리겠습니다.
+
+<br><br>
+
+학원을 하나 만든다고 해봅시다.
+
+무엇을 관리해야 할까요?
+
+</div>
+
+<div class="box">
+
+<b>예상 답변</b>
+
+<ul>
+
+<li>학생</li>
+
+<li>강사</li>
+
+<li>강의</li>
+
+<li>강의실</li>
+
+<li>수강신청</li>
+
+</ul>
+
+</div>
+
+<div class="box">
+
+<b>강사</b>
+
+맞습니다.
+
+이 모든 것들이
+
+Entity 후보가 될 수 있습니다.
+
+왜냐하면
+
+학원에서 실제로 관리해야 하기 때문입니다.
+
+</div>
+
+<h2>Entity ≠ Table</h2>
+
+<div class="board">
+
+현실 세계
+
+↓
+
+학생
+
+↓
+
+Entity
+
+↓
+
+데이터베이스에 저장
+
+↓
+
+Student Table
+
+</div>
+
+<div class="exam">
+
+★★★★★ 시험 포인트
+
+Entity는
+
+현실 세계의 관리 대상이다.
+
+Table은
+
+그 Entity를
+
+데이터베이스에 표현한 결과물이다.
+
+두 개념을 같은 것으로 암기하지 않도록 한다.
+
+</div>
+
+<div class="tip">
+
+학생들이
+
+"Entity가 테이블이죠?"
+
+라고 질문하면
+
+"거의 1:1로 대응되지만,
+
+개념은 다릅니다."
+
+라고 설명하면 충분하다.
+
+SQLD 초급 과정에서는
+
+너무 깊게 들어가지 않는다.
+
+</div>
+
+<h2>마무리 질문</h2>
+
+<div class="box">
+
+<b>강사</b>
+
+좋습니다.
+
+학생이 Entity라는 것은 알겠습니다.
+
+<br><br>
+
+그런데 학생은
+
+어떤 정보를 가지고 있을까요?
+
+</div>
+
+<div class="box">
+
+학생들이
+
+학번,
+
+이름,
+
+학과,
+
+전화번호,
+
+이메일
+
+등을 자유롭게 말하도록 유도한다.
+
+</div>
+
+<div class="board">
+
+학생
+
+↓
+
+학번
+
+이름
+
+학과
+
+전화번호
+
+...
+
+</div>
+
+<div class="box">
+
+<b>강사</b>
+
+좋습니다.
+
+방금 여러분이 말한
+
+'학번',
+
+'이름',
+
+'학과'
+
+같은 정보를
+
+데이터베이스에서는
+
+무엇이라고 부를까요?
+
+<br><br>
+
+다음 파트에서
+
+속성(Attribute)을 배워보겠습니다.
+
+</div>
+
+</body>
+
+</html>
