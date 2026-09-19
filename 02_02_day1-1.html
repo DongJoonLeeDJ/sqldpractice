@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>데이터베이스와 DBMS 개념 정리</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 40px;
+        background: #f5f7fa;
+        color: #202124;
+        font-family:
+            Arial,
+            "Helvetica Neue",
+            "Malgun Gothic",
+            "맑은 고딕",
+            sans-serif;
+        font-weight: 600;
+        line-height: 1.7;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .header {
+        background: #1f2937;
+        color: white;
+        padding: 36px 40px;
+        border-radius: 18px;
+        margin-bottom: 24px;
+    }
+
+    .header h1 {
+        margin: 0 0 8px;
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: -1px;
+    }
+
+    .header p {
+        margin: 0;
+        color: #d1d5db;
+        font-size: 16px;
+    }
+
+    .section {
+        background: white;
+        border-radius: 16px;
+        padding: 30px 34px;
+        margin-bottom: 20px;
+        border: 1px solid #e5e7eb;
+    }
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 0 22px;
+        font-size: 23px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+    .number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        background: #111827;
+        color: white;
+        font-size: 15px;
+        flex-shrink: 0;
+    }
+
+    .definition {
+        background: #f3f4f6;
+        border-left: 5px solid #374151;
+        padding: 18px 20px;
+        border-radius: 8px;
+        margin: 16px 0;
+        font-size: 17px;
+    }
+
+    .keyword {
+        font-weight: 800;
+    }
+
+    .flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin: 25px 0;
+        flex-wrap: wrap;
+    }
+
+    .flow-box {
+        padding: 15px 22px;
+        border: 2px solid #374151;
+        border-radius: 10px;
+        background: #fff;
+        text-align: center;
+        font-weight: 800;
+    }
+
+    .arrow {
+        font-size: 24px;
+        color: #6b7280;
+        font-weight: 800;
+    }
+
+    .code {
+        background: #111827;
+        color: #f9fafb;
+        padding: 20px;
+        border-radius: 10px;
+        overflow-x: auto;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.6;
+        white-space: pre;
+    }
+
+    .compare {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 18px;
+    }
+
+    .compare th,
+    .compare td {
+        padding: 14px 16px;
+        border-bottom: 1px solid #e5e7eb;
+        text-align: left;
+    }
+
+    .compare th {
+        background: #f3f4f6;
+        font-weight: 800;
+    }
+
+    .point {
+        background: #fffbeb;
+        border: 1px solid #fde68a;
+        border-radius: 10px;
+        padding: 18px 20px;
+        margin-top: 18px;
+    }
+
+    .point strong {
+        font-weight: 800;
+    }
+
+    .quote {
+        margin: 18px 0;
+        padding: 18px 22px;
+        background: #f9fafb;
+        border-radius: 10px;
+        font-size: 17px;
+    }
+
+    .highlight {
+        font-weight: 800;
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+    }
+
+    ul {
+        padding-left: 24px;
+    }
+
+    li {
+        margin: 7px 0;
+    }
+
+    .summary {
+        background: #111827;
+        color: white;
+        border-radius: 16px;
+        padding: 30px 34px;
+        margin-top: 24px;
+    }
+
+    .summary h2 {
+        margin-top: 0;
+        font-size: 22px;
+        font-weight: 800;
+    }
+
+    .summary p {
+        margin-bottom: 0;
+        color: #e5e7eb;
+    }
+
+    @media (max-width: 700px) {
+        body {
+            padding: 18px;
+        }
+
+        .section,
+        .header,
+        .summary {
+            padding: 24px 20px;
+        }
+
+        .header h1 {
+            font-size: 26px;
+        }
+
+        .section-title {
+            font-size: 20px;
+        }
+    }
+</style>
+
+</head>
+
+<body>
+<div class="container">
+
+
+<header class="header">
+    <h1>데이터베이스와 DBMS</h1>
+    <p>SQLD 입문을 위한 핵심 개념 정리</p>
+</header>
+
+<section class="section">
+    <h2 class="section-title">
+        <span class="number">1</span>
+        데이터 → DB → DBMS
+    </h2>
+
+    <h3>데이터(Data)</h3>
+    <div class="definition">
+        <span class="keyword">개별적인 사실이나 정보</span>
+    </div>
+
+    <div class="code">1001
+```
+
+홍길동
+개발팀
+5000</div>
+
+```
+    <p>위와 같은 개별적인 값이나 사실 자체는 <strong>데이터</strong>이다.</p>
+
+    <h3>데이터베이스(Database, DB)</h3>
+    <div class="definition">
+        <span class="keyword">
+            데이터를 일정한 구조와 규칙에 따라 체계적으로 저장해 놓은 데이터의 집합
+        </span>
+    </div>
+
+    <p>
+        즉, DB는 단순히 데이터 하나를 의미하는 것이 아니라
+        <strong>관련된 데이터들이 일정한 구조를 가지고 모여 있는 것</strong>으로 이해할 수 있다.
+    </p>
+
+    <h3>DBMS</h3>
+    <div class="definition">
+        <span class="keyword">
+            데이터베이스를 생성하고 관리하는 소프트웨어
+        </span>
+    </div>
+
+    <ul>
+        <li>Oracle</li>
+        <li>MySQL</li>
+        <li>PostgreSQL</li>
+        <li>SQL Server</li>
+        <li>SQLite</li>
+    </ul>
+
+    <div class="flow">
+        <div class="flow-box">데이터</div>
+        <div class="arrow">→</div>
+        <div class="flow-box">DB<br><small>체계적으로 구성된 데이터</small></div>
+        <div class="arrow">←</div>
+        <div class="flow-box">DBMS<br><small>DB를 관리하는 소프트웨어</small></div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section-title">
+        <span class="number">2</span>
+        Excel과 DBMS의 차이
+    </h2>
+
+    <p>
+        Excel 역시 데이터를 <strong>체계적으로 관리하는 데 사용할 수 있다.</strong>
+    </p>
+
+    <div class="code">사번 | 이름   | 부서   | 급여
+```
+
+---
+
+001  | 김철수 | 개발팀 | 4000
+002  | 이영희 | 기획팀 | 3800</div>
+
+```
+    <p>
+        하지만 Excel에서는 사용자가 정한 규칙을
+        <strong>사람이 지키면서 사용하는 것</strong>이 중요한 부분이다.
+    </p>
+
+    <div class="point">
+        <strong>핵심 관점</strong><br>
+        Excel과 DBMS의 차이를 단순히
+        "체계적으로 관리할 수 있느냐 없느냐"로 보는 것보다,
+        <strong>"그 체계를 누가 관리하고 강제하느냐"</strong>로 보는 것이 중요하다.
+    </div>
+
+    <p>
+        Excel에도 데이터 유효성 검사, 셀 보호 등의 기능을 이용하여
+        일정한 규칙을 적용할 수 있다.
+    </p>
+
+    <p>
+        그러나 DBMS에서는 데이터 구조와 제약조건을
+        <strong>시스템에 정의하고 DBMS가 이를 관리·강제</strong>할 수 있다.
+    </p>
+</section>
+
+<section class="section">
+    <h2 class="section-title">
+        <span class="number">3</span>
+        DBMS가 관리하는 "체계"
+    </h2>
+
+    <h3>① 테이블 이름</h3>
+
+    <p>
+        일반적으로 동일한 데이터베이스/스키마 안에서는
+        동일한 이름의 테이블을 여러 개 만들 수 없다.
+    </p>
+
+    <div class="code">학생
+```
+
+학생
+학생
+
+→ 동일한 이름의 테이블을 여러 개 생성할 수 없음</div>
+
+```
+    <h3>② PRIMARY KEY</h3>
+
+    <p>
+        PRIMARY KEY로 지정된 컬럼 또는 컬럼 조합은
+        <strong>중복된 값을 가질 수 없다.</strong>
+    </p>
+
+    <div class="code">CREATE TABLE 학생 (
+학번 INT PRIMARY KEY,
+이름 VARCHAR(20)
+```
+
+);</div>
+
+```
+    <div class="code">INSERT INTO 학생 VALUES (1, '김철수');
+```
+
+INSERT INTO 학생 VALUES (1, '이영희');</div>
+
+```
+    <p>
+        두 번째 입력은 PRIMARY KEY 제약조건에 의해
+        <strong>DBMS가 거부</strong>한다.
+    </p>
+
+    <div class="quote">
+        사람이 "중복하지 말자"고 약속하는 것과<br>
+        DBMS가 "중복을 허용하지 않는다"고 강제하는 것은 다르다.
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section-title">
+        <span class="number">4</span>
+        "엑셀은 DB인가요?"
+    </h2>
+
+    <p>
+        이 질문은 엄밀하게 보면 <strong>개념의 층위가 서로 다르기 때문에 애매한 질문</strong>이다.
+    </p>
+
+    <table class="compare">
+        <thead>
+            <tr>
+                <th>개념</th>
+                <th>의미</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>DB</td>
+                <td>체계적으로 구성된 데이터의 집합</td>
+            </tr>
+            <tr>
+                <td>DBMS</td>
+                <td>DB를 관리하는 소프트웨어</td>
+            </tr>
+            <tr>
+                <td>Excel</td>
+                <td>데이터를 다루는 스프레드시트 프로그램</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="point">
+        따라서 "엑셀은 DB인가요?"보다는<br>
+        <strong>"엑셀은 DBMS인가요?"</strong>라고 질문하는 것이 개념적으로 더 적절하다.
+    </div>
+
+    <p>
+        Excel은 데이터를 저장하고 관리할 수 있지만,
+        SQLD에서 말하는 전형적인 관계형 DBMS와는 다른 프로그램이다.
+    </p>
+</section>
+
+<section class="section">
+    <h2 class="section-title">
+        <span class="number">5</span>
+        왜 "DB"가 헷갈리는가?
+    </h2>
+
+    <p>
+        실무에서는 <strong>"DB"</strong>라는 말을 엄밀한 의미보다
+        넓은 의미로 사용하는 경우가 많다.
+    </p>
+
+    <div class="quote">
+        <strong>"DB에 데이터 넣었어?"</strong><br>
+        → 데이터베이스를 의미하는 경우
+    </div>
+
+    <div class="quote">
+        <strong>"DB 뭐 써요?"</strong><br>
+        → MySQL, Oracle 등의 DBMS 또는 DB 제품을 의미하는 경우
+    </div>
+
+    <div class="quote">
+        <strong>"DB 서버 죽었어요."</strong><br>
+        → DBMS가 동작하는 서버를 의미하는 경우
+    </div>
+
+    <p>
+        따라서 실무에서는 문맥에 따라
+        <strong>DB, DBMS, DB 서버, DB 제품</strong> 등을
+        "DB"라고 뭉뚱그려 표현하는 경우가 있다.
+    </p>
+
+    <div class="point">
+        <strong>SQLD에서는 의식적으로 구분하자.</strong><br><br>
+        실무에서는 "DB"라는 말을 넓게 사용할 수 있지만,
+        SQLD에서는 <strong>DB와 DBMS를 구분해서 사용</strong>한다.
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section-title">
+        <span class="number">6</span>
+        SQLD에서 사용할 개념 구조
+    </h2>
+
+    <div class="flow">
+        <div class="flow-box">
+            데이터
+        </div>
+
+        <div class="arrow">→</div>
+
+        <div class="flow-box">
+            체계적으로 구조화된<br>
+            데이터의 집합
+            <br><br>
+            <strong>DB</strong>
+        </div>
+
+        <div class="arrow">←</div>
+
+        <div class="flow-box">
+            관리
+            <br><br>
+            <strong>DBMS</strong>
+        </div>
+    </div>
+
+    <div class="point">
+        <strong>강의에서 사용할 원칙</strong><br><br>
+        실무에서는 "DB"라는 말을 넓게 사용하는 경우가 있지만,
+        지금부터 SQLD에서는 <strong>DB와 DBMS를 구분해서 사용한다.</strong>
+    </div>
+</section>
+
+<!-- 9 -->
+<section class="summary">
+    <h2>한 문장으로 정리</h2>
+
+    <p>
+        데이터는 개별적인 사실·정보이고,
+        DB는 그런 데이터를 일정한 구조와 규칙에 따라
+        체계적으로 모아 놓은 것이며,
+        DBMS는 그 DB를 관리하는 소프트웨어다.
+    </p>
+
+    <p style="margin-top:18px;">
+        실무에서는 이 셋을 엄밀하게 구분하지 않고
+        "DB"라는 말을 넓게 사용하는 경우가 있기 때문에
+        혼동하기 쉽다.
+    </p>
+</section>
+
+
+</div>
+</body>
+</html>
