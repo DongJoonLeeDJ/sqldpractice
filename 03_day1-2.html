@@ -112,6 +112,63 @@ details{margin:8px 0} summary{cursor:pointer;font-weight:bold}
 
 <pre>
 
+<hr>
+<pre>
+    쉽게 말하면 Domain(도메인) = 어떤 속성(Attribute)이 가질 수 있는 값의 범위야.
+
+예를 들어 학생 테이블이 있다고 하면:
+
+학번	이름	학년	성별
+1001	김철수	2	남
+1002	이영희	3	여
+
+각 Attribute의 Domain은:
+
+학번 → 숫자 형태의 학번
+이름 → 문자열
+학년 → 1, 2, 3, 4
+성별 → 남, 여
+
+즉,
+
+Attribute = 무엇을 저장할 것인가
+
+Domain = 그 Attribute에 어떤 값들이 들어갈 수 있는가
+
+SQLD식으로 외우면
+
+Domain = 속성이 가질 수 있는 원자값들의 범위
+
+예를 들어 학년이라는 Attribute의 Domain이 {1, 2, 3, 4}라면
+
+학년 = 2 → 가능
+학년 = 4 → 가능
+학년 = 7 → ❌ Domain을 벗어남
+Relation / Tuple / Attribute / Domain 한 번에
+학생 Relation(테이블)
+│
+├── Attribute(열)
+│     ├── 학번
+│     ├── 이름
+│     └── 학년
+│
+├── Tuple(행)
+│     └── (1001, 김철수, 2)
+│
+└── Domain
+      ├── 학번 → 가능한 학번 값들의 범위
+      ├── 이름 → 가능한 문자열 값들의 범위
+      └── 학년 → {1, 2, 3, 4}
+
+시험에서는 특히 Domain = 속성이 가질 수 있는 값의 집합/범위라고 기억하면 충분해.
+
+그리고 헷갈리기 쉬운 게 Attribute와 Domain의 차이인데,
+
+학년 = Attribute
+1, 2, 3, 4 = Domain
+
+이렇게 생각하면 거의 안 헷갈려.
+</pre>
 
 
 <section><h2>📝 Mini Quiz</h2>
