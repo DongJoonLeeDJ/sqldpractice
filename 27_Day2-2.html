@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang='ko'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>SQLD DAY2-2 정규화</title>
+<style>
+body{font-family:Arial,'Malgun Gothic',sans-serif;line-height:1.65;margin:0;background:#f7f7f7;color:#222}
+main{max-width:1000px;margin:0 auto;background:white;padding:36px 48px}
+h1{font-size:32px;border-bottom:3px solid #333;padding-bottom:12px}
+h2{font-size:24px;margin-top:36px}
+h3{font-size:19px;margin-top:24px}
+section{margin:24px 0}
+.board{background:#fff8dc;border-left:6px solid #d6a800;padding:18px;white-space:pre-wrap;font-family:Consolas,monospace}
+.exam{background:#fff0f0;border-left:6px solid #d33;padding:18px}
+.tip{background:#eef7ff;border-left:6px solid #3182ce;padding:18px}
+.memo{background:#f1f1f1;border-left:6px solid #777;padding:18px}
+.activity{background:#f1fff1;border-left:6px solid #38a169;padding:18px}
+.warn{background:#fff7ed;border-left:6px solid #dd6b20;padding:18px}
+table{border-collapse:collapse;width:100%;margin:16px 0}
+th,td{border:1px solid #aaa;padding:9px;text-align:left}
+th{background:#eee}
+code{background:#f0f0f0;padding:2px 5px}
+details{margin:12px 0}
+footer{margin-top:50px;color:#666;font-size:14px}
+</style>
+</head><body><main>
+<h1>SQLD DAY2-2 — 정규화(Normalization)</h1>
+<section><h2>🎯 학습목표</h2>
+<ul><li>정규화가 왜 필요한지 데이터 중복과 이상현상으로 설명할 수 있다.</li>
+<li>함수적 종속의 기본 개념을 이해한다.</li>
+<li>제1정규형(1NF), 제2정규형(2NF), 제3정규형(3NF)의 핵심을 구분한다.</li>
+<li>BCNF가 왜 등장하는지 큰 흐름을 이해한다.</li></ul></section>
+
+<section><h2>🎤 도입: “왜 테이블을 나누나요?”</h2>
+<p>학생 테이블에 학과명까지 저장한다고 생각해 봅시다.</p>
+<table><tr><th>학번</th><th>이름</th><th>학과번호</th><th>학과명</th></tr>
+<tr><td>1001</td><td>김철수</td><td>10</td><td>컴퓨터공학과</td></tr>
+<tr><td>1002</td><td>이영희</td><td>10</td><td>컴퓨터공학과</td></tr>
+<tr><td>1003</td><td>박민수</td><td>10</td><td>컴퓨터공학과</td></tr></table>
+<p>학과명이 반복됩니다. “그냥 중복되면 조금 저장공간을 더 쓰는 것 아닌가요?”</p>
+<p>문제는 저장공간보다 <b>데이터가 서로 다르게 바뀌는 것</b>입니다.</p></section>
+
+<section><h2>1. 이상현상(Anomaly)</h2>
+<h3>① 갱신 이상</h3>
+<p>컴퓨터공학과의 명칭을 변경했는데 일부 행만 수정하면 서로 다른 학과명이 동시에 존재할 수 있습니다.</p>
+<h3>② 삽입 이상</h3>
+<p>아직 학생이 한 명도 없는 새로운 학과를 등록하고 싶은데 학생 테이블에 학과 정보가 종속되어 있다면 등록하기 곤란합니다.</p>
+<h3>③ 삭제 이상</h3>
+<p>마지막 학생 한 명을 삭제했더니 그 학생 때문에 존재하던 학과 정보까지 사라질 수 있습니다.</p>
+<div class='board'>중복
+ ↓
+수정할 곳이 여러 군데
+ ↓
+불일치 가능성
+ ↓
+삽입/삭제/갱신 이상
+ ↓
+정규화 필요</div></section>
+
+<section><h2>2. 정규화란?</h2>
+<p>정규화는 데이터의 중복과 이상현상을 줄이고, 데이터가 적절한 구조를 갖도록 관계를 분해해 나가는 과정입니다.</p>
+<p>핵심은 “무조건 테이블을 많이 쪼개는 것”이 아닙니다. <b>데이터 간 종속 관계를 살펴 적절하게 분리하는 것</b>입니다.</p>
+
+<h3>함수적 종속</h3>
+<p>“학번을 알면 학생 이름을 알 수 있다”면 <code>학번 → 이름</code>이라고 표현합니다.</p>
+<div class='board'>학번 → 이름
+학번 → 학과번호
+
+학과번호 → 학과명</div>
+<p>여기서 학과명은 학번에 직접 종속되는 것이 아니라 학과번호를 통해 결정됩니다.</p></section>
+
+<section><h2>3. 제1정규형(1NF)</h2>
+<p>가장 먼저 생각할 것은 <b>하나의 속성에 여러 값을 넣지 않는 것</b>입니다.</p>
+<table><tr><th>학번</th><th>이름</th><th>수강과목</th></tr>
+<tr><td>1001</td><td>김철수</td><td>DB, Java, Python</td></tr></table>
+<p>이렇게 한 칸에 여러 값을 묶어 넣기보다 반복되는 값을 별도 행/구조로 관리합니다.</p>
+<div class='exam'><b>⭐ 시험 포인트</b><br>1NF는 원자값을 갖도록 하는 것이 핵심이다.</div></section>
+
+<section><h2>4. 제2정규형(2NF)</h2>
+<p>2NF는 <b>부분 함수적 종속</b>과 연결해서 이해합니다.</p>
+<p>특히 복합키를 사용하는 테이블에서 중요합니다.</p>
+<table><tr><th>학번</th><th>과목번호</th><th>학생이름</th><th>과목명</th><th>성적</th></tr>
+<tr><td>1001</td><td>DB01</td><td>김철수</td><td>데이터베이스</td><td>A</td></tr>
+<tr><td>1001</td><td>JAVA01</td><td>김철수</td><td>Java</td><td>B</td></tr></table>
+<p>키가 <code>(학번, 과목번호)</code>라고 하면 학생이름은 학번만으로 결정되고, 과목명은 과목번호만으로 결정됩니다.</p>
+<div class='board'>복합키: (학번, 과목번호)
+
+학생이름 ← 학번
+과목명   ← 과목번호
+성적     ← 학번 + 과목번호
+
+→ 부분 함수적 종속 제거</div>
+<p>학생 정보와 과목 정보를 분리하고 수강 테이블에는 수강 자체의 정보만 남기는 방향으로 갑니다.</p>
+<div class='exam'><b>⭐ 시험 포인트</b><br>2NF 핵심: 부분 함수적 종속 제거. 특히 “복합키”가 등장하면 부분 종속을 의심한다.</div></section>
+
+<section><h2>5. 제3정규형(3NF)</h2>
+<p>3NF에서는 <b>이행적 함수적 종속</b>을 제거하는 방향으로 봅니다.</p>
+<div class='board'>학번 → 학과번호
+학과번호 → 학과명
+
+따라서
+학번 → 학과명
+
+학과명은 학번에 직접 종속된 것이 아니라
+학과번호를 거쳐 이행적으로 결정됨</div>
+<p>학생 테이블에서 학과 정보를 적절히 분리하면 종속 관계가 더 명확해집니다.</p>
+<div class='exam'><b>⭐ 시험 포인트</b><br>3NF 핵심: 이행적 함수적 종속 제거.</div></section>
+
+<section><h2>6. BCNF</h2>
+<p>BCNF는 3NF보다 더 강한 정규형으로 이해합니다.</p>
+<p>초급 수업에서는 복잡한 예외를 암기하기보다 “결정자가 후보키가 되어야 한다”는 핵심 문장을 중심으로 설명하고, 실제 문제에서 주어진 함수적 종속과 후보키를 판단하는 연습으로 연결합니다.</p>
+<div class='exam'><b>⭐ 시험 포인트</b><br>BCNF는 결정자(Determinant)가 후보키가 되도록 하는 정규화라는 방향을 기억한다.</div></section>
+
+<section><h2>📌 정규화 흐름 한 장</h2>
+<div class='board'>1NF
+원자값
+ ↓
+2NF
+부분 함수적 종속 제거
+ ↓
+3NF
+이행적 함수적 종속 제거
+ ↓
+BCNF
+결정자가 후보키가 되도록 강화</div></section>
+
+<section><h2>📝 Mini Quiz</h2>
+<p><b>Q1.</b> “학번, 과목번호가 복합키인데 학생이름은 학번에 의해서만 결정된다.” 가장 관련 깊은 것은?</p>
+<details><summary>정답 보기</summary><p>2NF — 부분 함수적 종속 문제.</p></details>
+<p><b>Q2.</b> “학번 → 학과번호 → 학과명” 구조에서 학과명을 별도 학과 엔터티로 분리하는 것과 가장 관련 깊은 정규화는?</p>
+<details><summary>정답 보기</summary><p>3NF — 이행적 함수적 종속 제거.</p></details></section>
+
+<section><h2>📌 마무리</h2>
+<p>정규화는 “테이블을 쪼개는 기술”이라기보다 <b>데이터가 무엇에 의해 결정되는지 살펴보고 중복과 이상현상을 줄이는 과정</b>입니다.</p>
+<p>다음 시간에는 반대로 “테이블을 일부러 합치기도 하는가?”와 트랜잭션을 다룹니다.</p></section>
+</main></body></html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang='ko'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>SQLD Day2 Script2</title>
+<style>
+body{font-family:Arial,'Malgun Gothic',sans-serif;line-height:1.65;margin:0;background:#f7f7f7;color:#222}
+main{max-width:1000px;margin:0 auto;background:white;padding:36px 48px}
+h1{font-size:32px;border-bottom:3px solid #333;padding-bottom:12px}
+h2{font-size:24px;margin-top:36px}
+h3{font-size:19px;margin-top:24px}
+section{margin:24px 0}
+.board{background:#fff8dc;border-left:6px solid #d6a800;padding:18px;white-space:pre-wrap;font-family:Consolas,monospace}
+.exam{background:#fff0f0;border-left:6px solid #d33;padding:18px}
+.tip{background:#eef7ff;border-left:6px solid #3182ce;padding:18px}
+.memo{background:#f1f1f1;border-left:6px solid #777;padding:18px}
+.activity{background:#f1fff1;border-left:6px solid #38a169;padding:18px}
+.warn{background:#fff7ed;border-left:6px solid #dd6b20;padding:18px}
+table{border-collapse:collapse;width:100%;margin:16px 0}
+th,td{border:1px solid #aaa;padding:9px;text-align:left}
+th{background:#eee}
+code{background:#f0f0f0;padding:2px 5px}
+details{margin:12px 0}
+footer{margin-top:50px;color:#666;font-size:14px}
+</style>
+</head><body><main>
+<h1>SQLD Day2 — Script 2: 정규화</h1>
+<section><h2>수업 목표</h2><p>정규화를 암기표가 아니라 “중복 → 이상현상 → 종속 → 분리”의 흐름으로 이해시킨다.</p></section>
+<section><h2>0~15분 | 도입</h2>
+<p><b>강사:</b> “수강 테이블에 학생 이름까지 같이 넣어 봅시다. 김철수라는 이름이 수강 과목마다 반복되겠죠?”</p>
+<p>학생이 “중복된다”고 답하면 “중복되면 뭐가 문제일까요?”라고 한 단계 더 묻는다.</p></section>
+<section><h2>15~45분 | 이상현상</h2>
+<p>하나의 사례를 계속 유지한다. 학과명 변경 → 갱신 이상, 학생 없는 학과 등록 → 삽입 이상, 마지막 학생 삭제 → 삭제 이상.</p>
+<div class='board'>갱신 이상 / 삽입 이상 / 삭제 이상</div>
+<p><b>강사:</b> “정규화는 이 문제를 줄이기 위해 데이터 구조를 다시 보는 과정입니다.”</p></section>
+<section><h2>45~75분 | 함수적 종속</h2>
+<p><b>강사:</b> “학번을 알면 학생 이름을 알 수 있나요?”</p>
+<p><b>학생:</b> “네.”</p>
+<p><b>강사:</b> “그러면 학번이 이름을 결정한다고 볼 수 있습니다.”</p>
+<div class='board'>학번 → 이름<br>학과번호 → 학과명</div>
+<p>결정자와 종속 속성의 관계를 간단한 화살표로 판서한다.</p></section>
+<section><h2>75~110분 | 1NF / 2NF / 3NF / BCNF</h2>
+<p>1NF는 원자값, 2NF는 부분 함수적 종속 제거, 3NF는 이행적 함수적 종속 제거, BCNF는 결정자가 후보키가 되도록 강화한다.</p>
+<div class='tip'><b>강사 팁</b><br>“1,2,3을 외우세요”보다 “각 단계에서 어떤 문제가 없어지는가?”를 반복한다.</div></section>
+<section><h2>110~120분 | 퀴즈</h2>
+<p>복합키 문제 하나를 제시하고 부분 종속을 찾게 한다. 마지막 질문: “그럼 테이블을 무조건 계속 나누면 좋을까요?” → 다음 Script의 반정규화로 연결.</p></section>
+</main></body></html>

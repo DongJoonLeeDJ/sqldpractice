@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang='ko'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>SQLD DAY2-3 반정규화와 트랜잭션</title>
+<style>
+body{font-family:Arial,'Malgun Gothic',sans-serif;line-height:1.65;margin:0;background:#f7f7f7;color:#222}
+main{max-width:1000px;margin:0 auto;background:white;padding:36px 48px}
+h1{font-size:32px;border-bottom:3px solid #333;padding-bottom:12px}
+h2{font-size:24px;margin-top:36px}
+h3{font-size:19px;margin-top:24px}
+section{margin:24px 0}
+.board{background:#fff8dc;border-left:6px solid #d6a800;padding:18px;white-space:pre-wrap;font-family:Consolas,monospace}
+.exam{background:#fff0f0;border-left:6px solid #d33;padding:18px}
+.tip{background:#eef7ff;border-left:6px solid #3182ce;padding:18px}
+.memo{background:#f1f1f1;border-left:6px solid #777;padding:18px}
+.activity{background:#f1fff1;border-left:6px solid #38a169;padding:18px}
+.warn{background:#fff7ed;border-left:6px solid #dd6b20;padding:18px}
+table{border-collapse:collapse;width:100%;margin:16px 0}
+th,td{border:1px solid #aaa;padding:9px;text-align:left}
+th{background:#eee}
+code{background:#f0f0f0;padding:2px 5px}
+details{margin:12px 0}
+footer{margin-top:50px;color:#666;font-size:14px}
+</style>
+</head><body><main>
+<h1>SQLD DAY2-3 — 반정규화와 트랜잭션</h1>
+<section><h2>🎯 학습목표</h2>
+<ul><li>정규화의 장점만 있는 것은 아님을 이해한다.</li>
+<li>반정규화의 목적과 대표적인 방법을 설명할 수 있다.</li>
+<li>트랜잭션이 왜 필요한지 실제 업무 상황으로 설명할 수 있다.</li>
+<li>COMMIT, ROLLBACK, SAVEPOINT의 기본 역할을 구분한다.</li></ul></section>
+
+<section><h2>🎤 도입: “그럼 무조건 잘게 나누면 좋은가?”</h2>
+<p>정규화한 구조에서는 데이터 중복이 줄어드는 장점이 있습니다. 하지만 조회할 때 여러 테이블을 JOIN해야 하는 경우가 많아질 수 있습니다.</p>
+<p>예를 들어 주문 화면에서 고객명, 상품명, 배송정보를 한꺼번에 보여주려면 여러 테이블을 조합해야 합니다.</p>
+<div class='activity'><b>질문</b><br>“조회가 아주 많고, JOIN 비용이 문제가 된다면 데이터베이스는 어떻게 할까요?”</div></section>
+
+<section><h2>1. 반정규화(Denormalization)</h2>
+<p>반정규화는 성능이나 관리상의 목적 등을 고려하여 정규화된 데이터 구조를 의도적으로 일부 변경하는 것입니다.</p>
+<p>대표적으로 테이블을 통합하거나, 중복 속성을 두거나, 파생 속성을 추가하는 방식 등이 있습니다.</p>
+<div class='warn'><b>중요</b><br>반정규화는 “정규화가 틀렸기 때문에 되돌리는 것”이 아닙니다. 업무 요구사항과 성능 등을 고려한 설계상의 선택입니다.</div></section>
+
+<section><h2>2. 반정규화를 왜 할까?</h2>
+<table><tr><th>정규화</th><th>반정규화 관점</th></tr>
+<tr><td>중복 감소</td><td>조회 성능 고려</td></tr>
+<tr><td>데이터 일관성 관리 용이</td><td>JOIN 감소 가능</td></tr>
+<tr><td>변경에 유리</td><td>조회 중심 시스템에서 고려</td></tr></table>
+<p>반정규화에는 대가가 있습니다. 중복 데이터가 생기면 갱신할 곳이 늘고 데이터 불일치 가능성도 커집니다.</p>
+
+<section><h2>3. 트랜잭션(Transaction)</h2>
+<p>은행 송금을 생각해 봅시다.</p>
+<div class='board'>A 계좌 -10만원
+B 계좌 +10만원
+
+두 작업이 모두 성공해야
+“송금 성공”이라고 할 수 있다.</div>
+<p>A에서 돈을 빼는 데 성공했는데 B에 넣는 작업이 실패하면 어떻게 될까요? 이런 상황을 막기 위해 여러 작업을 하나의 논리적 작업 단위로 묶습니다. 이것이 트랜잭션입니다.</p></section>
+
+<section><h2>4. 트랜잭션의 ACID</h2>
+<h3>Atomicity — 원자성</h3><p>트랜잭션의 작업은 모두 수행되거나, 모두 수행되지 않아야 합니다.</p>
+<h3>Consistency — 일관성</h3><p>트랜잭션 전후에 데이터베이스의 규칙과 제약조건이 유지되어야 합니다.</p>
+<h3>Isolation — 고립성</h3><p>동시에 실행되는 트랜잭션들이 서로 영향을 주는 방식이 적절히 통제되어야 합니다.</p>
+<h3>Durability — 지속성</h3><p>정상적으로 완료된 트랜잭션의 결과는 이후에도 유지되어야 합니다.</p>
+<div class='exam'><b>⭐ 시험 포인트</b><br>ACID의 네 가지 의미를 상황과 연결해 구분하는 문제가 중요하다.</div></section>
+
+<section><h2>5. COMMIT / ROLLBACK / SAVEPOINT</h2>
+<h3>COMMIT</h3><p>현재 트랜잭션의 변경을 확정합니다.</p>
+<h3>ROLLBACK</h3><p>트랜잭션의 변경을 취소합니다. 정확한 범위는 DBMS와 사용 방식에 따라 이해할 필요가 있지만, SQLD에서는 기본적인 트랜잭션 제어 개념을 중심으로 봅니다.</p>
+<h3>SAVEPOINT</h3><p>트랜잭션 중간에 저장점을 만들어 특정 지점까지 되돌릴 수 있도록 합니다.</p>
+<div class='board'>작업 A
+↓
+SAVEPOINT S1
+↓
+작업 B
+↓
+작업 C
+↓
+ROLLBACK TO S1
+→ B, C 쪽 작업을 되돌리고 S1 이후를 취소</div>
+<div class='exam'><b>⭐ 시험 포인트</b><br>COMMIT = 확정 / ROLLBACK = 취소 / SAVEPOINT = 중간 저장점</div></section>
+
+<section><h2>6. 데이터 모델링에서 트랜잭션까지 연결</h2>
+<div class='board'>Entity
+ ↓
+Attribute
+ ↓
+Identifier
+ ↓
+Relationship
+ ↓
+정규화
+ ↓
+필요하면 반정규화
+ ↓
+실제 업무 처리
+ ↓
+Transaction으로 작업 단위 보장</div>
+<p>이제 Day1과 Day2의 내용이 하나의 흐름으로 연결됩니다.</p></section>
+
+<section><h2>📝 Mini Quiz</h2>
+<p><b>Q1.</b> 송금에서 출금은 성공했는데 입금이 실패했다. 이런 상황을 하나의 작업 단위로 묶어 처리하려는 핵심 개념은?</p>
+<details><summary>정답 보기</summary><p>트랜잭션, 특히 원자성과 관련된다.</p></details>
+<p><b>Q2.</b> 변경 내용을 최종적으로 확정하는 명령은?</p>
+<details><summary>정답 보기</summary><p>COMMIT</p></details>
+<p><b>Q3.</b> 트랜잭션 중간 지점을 지정하는 명령은?</p>
+<details><summary>정답 보기</summary><p>SAVEPOINT</p></details></section>
+
+<section><h2>📌 마무리</h2>
+<p>정규화는 데이터 구조를 안정적으로 만들기 위한 방향이고, 반정규화는 업무와 성능을 고려한 설계 선택입니다. 트랜잭션은 실제 데이터 변경 작업이 안전하게 처리되도록 합니다.</p>
+<p>다음 시간에는 Day2 전체를 하나의 사례로 묶어 데이터 모델링 문제를 풀어봅니다.</p></section>
+</main></body></html>

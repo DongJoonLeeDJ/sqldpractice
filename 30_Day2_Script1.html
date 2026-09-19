@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang='ko'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>SQLD Day2 Script1</title>
+<style>
+body{font-family:Arial,'Malgun Gothic',sans-serif;line-height:1.65;margin:0;background:#f7f7f7;color:#222}
+main{max-width:1000px;margin:0 auto;background:white;padding:36px 48px}
+h1{font-size:32px;border-bottom:3px solid #333;padding-bottom:12px}
+h2{font-size:24px;margin-top:36px}
+h3{font-size:19px;margin-top:24px}
+section{margin:24px 0}
+.board{background:#fff8dc;border-left:6px solid #d6a800;padding:18px;white-space:pre-wrap;font-family:Consolas,monospace}
+.exam{background:#fff0f0;border-left:6px solid #d33;padding:18px}
+.tip{background:#eef7ff;border-left:6px solid #3182ce;padding:18px}
+.memo{background:#f1f1f1;border-left:6px solid #777;padding:18px}
+.activity{background:#f1fff1;border-left:6px solid #38a169;padding:18px}
+.warn{background:#fff7ed;border-left:6px solid #dd6b20;padding:18px}
+table{border-collapse:collapse;width:100%;margin:16px 0}
+th,td{border:1px solid #aaa;padding:9px;text-align:left}
+th{background:#eee}
+code{background:#f0f0f0;padding:2px 5px}
+details{margin:12px 0}
+footer{margin-top:50px;color:#666;font-size:14px}
+</style>
+</head><body><main>
+<h1>SQLD Day2 — Script 1: 관계(Relationship)</h1>
+<section><h2>수업 목표</h2><p>Day1에서 배운 Entity/Attribute/Identifier를 Relationship으로 연결한다. 학생들이 1:1, 1:N, N:M을 업무 질문으로 판단하게 한다.</p></section>
+<section><h2>0~10분 | 복습</h2>
+<p><b>강사:</b> “어제 학생이라는 엔터티를 봤습니다. 학생의 속성에는 무엇이 있었죠?”</p>
+<p><b>예상 답:</b> “학번, 이름, 학과요.”</p>
+<p><b>강사:</b> “그럼 오늘은 학생과 학과가 서로 어떤 관계인지 생각해 봅시다.”</p>
+<div class='board'>Entity = 무엇을 관리?
+Attribute = 어떤 특징?
+Identifier = 어떻게 구분?
+Relationship = 서로 어떻게 연결?</div>
+<div class='tip'><b>강사 팁</b><br>Day1에서 배운 용어를 다시 정의하지 말고 질문으로 회수한다.</div></section>
+
+<section><h2>10~30분 | 관계의 필요성</h2>
+<p><b>강사:</b> “학생 테이블과 과목 테이블이 각각 존재한다고 합시다. 김철수가 데이터베이스를 수강한다는 사실은 어디에 저장할까요?”</p>
+<p><b>학생 예상:</b> “학생 테이블에 넣나요?”</p>
+<p><b>강사:</b> “학생 테이블에 과목을 넣기 시작하면 여러 과목을 어떻게 저장하죠?”</p>
+<p>학생이 여러 과목을 수강하고 과목도 여러 학생에게 연결되므로 N:M이라는 결론을 유도한다.</p></section>
+
+<section><h2>30~60분 | 1:1 / 1:N / N:M</h2>
+<p><b>강사:</b> “학과 하나에 학생이 여러 명 있습니다. 학과 하나를 기준으로 학생이 여러 명이죠. 그러면?”</p>
+<p><b>예상 답:</b> “1:N이요.”</p>
+<p>이후 학생-과목 사례로 N:M을 만들고 수강 엔터티를 도입한다.</p>
+<div class='board'>학생 1 ─── N 수강 N ─── 1 과목</div>
+<p><b>강사:</b> “여기서 수강일이나 성적은 어디의 속성일까요?”</p>
+<p><b>예상 답:</b> “수강의 속성입니다.”</p></section>
+
+<section><h2>60~100분 | 선택성</h2>
+<p>“학생이 반드시 과목을 하나 이상 수강해야 하는가?”를 질문한다. 업무 규칙에 따라 관계가 달라질 수 있음을 강조한다.</p>
+<div class='memo'><b>판서 포인트</b><br>관계는 기호 암기보다 업무 규칙 → 연결 개수 → 선택 여부 순으로 접근.</div></section>
+
+<section><h2>100~120분 | 퀴즈 및 연결</h2>
+<p>“학생-과목은 왜 N:M인가?” “N:M을 테이블에서는 어떻게 풀까?”를 질문한다.</p>
+<p>마지막에 “그런데 수강 테이블에 학생 이름과 학과명까지 계속 넣으면 어떻게 될까요?”라고 질문하며 정규화로 연결한다.</p></section>
+</main></body></html>

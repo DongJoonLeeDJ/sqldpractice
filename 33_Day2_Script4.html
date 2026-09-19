@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang='ko'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>SQLD Day2 Script4</title>
+<style>
+body{font-family:Arial,'Malgun Gothic',sans-serif;line-height:1.65;margin:0;background:#f7f7f7;color:#222}
+main{max-width:1000px;margin:0 auto;background:white;padding:36px 48px}
+h1{font-size:32px;border-bottom:3px solid #333;padding-bottom:12px}
+h2{font-size:24px;margin-top:36px}
+h3{font-size:19px;margin-top:24px}
+section{margin:24px 0}
+.board{background:#fff8dc;border-left:6px solid #d6a800;padding:18px;white-space:pre-wrap;font-family:Consolas,monospace}
+.exam{background:#fff0f0;border-left:6px solid #d33;padding:18px}
+.tip{background:#eef7ff;border-left:6px solid #3182ce;padding:18px}
+.memo{background:#f1f1f1;border-left:6px solid #777;padding:18px}
+.activity{background:#f1fff1;border-left:6px solid #38a169;padding:18px}
+.warn{background:#fff7ed;border-left:6px solid #dd6b20;padding:18px}
+table{border-collapse:collapse;width:100%;margin:16px 0}
+th,td{border:1px solid #aaa;padding:9px;text-align:left}
+th{background:#eee}
+code{background:#f0f0f0;padding:2px 5px}
+details{margin:12px 0}
+footer{margin-top:50px;color:#666;font-size:14px}
+</style>
+</head><body><main>
+<h1>SQLD Day2 — Script 4: 종합 복습·문제풀이·Day3 연결</h1>
+<section><h2>수업 목표</h2><p>Day1~Day2 데이터 모델링을 하나의 사례로 연결하고 SQL 영역으로 자연스럽게 넘어간다.</p></section>
+<section><h2>0~20분 | 빈칸 복습</h2>
+<div class='board'>무엇을 관리? → ______
+특징은? → ______
+어떻게 구분? → ______
+서로 어떻게 연결? → ______
+중복과 이상현상을 줄이려면? → ______
+업무 단위를 안전하게 처리하려면? → ______</div>
+<p>예상 답: Entity, Attribute, Identifier, Relationship, 정규화, Transaction.</p></section>
+<section><h2>20~60분 | 종합 사례</h2>
+<p>온라인 강좌 시스템을 제시하고 학생들이 엔터티, 속성, 식별자, 관계를 직접 말하도록 한다.</p>
+<p>학생-강좌 N:M → 수강 엔터티 → 수강일/성적을 수강의 속성으로 연결한다.</p></section>
+<section><h2>60~90분 | 정규화 문제</h2>
+<p>복합키 (학번, 과목번호)를 주고 학생명/과목명/성적의 종속 관계를 학생들에게 판별시킨다.</p>
+<div class='board'>학생명 ← 학번
+과목명 ← 과목번호
+성적 ← 학번 + 과목번호
+
+→ 2NF 관점에서 부분 종속 확인</div></section>
+<section><h2>90~110분 | 시험형 퀴즈</h2>
+<p>관계차수, 1NF/2NF/3NF, BCNF, 반정규화, ACID, TCL 관련 문제를 짧게 풀고 오답 이유를 말하게 한다.</p>
+<div class='tip'><b>강사 운영</b><br>정답을 바로 말하기보다 “왜 그렇게 생각했나요?”를 먼저 묻는다. 오답의 이유를 잡아주는 것이 목적이다.</div></section>
+<section><h2>110~120분 | Day3 연결</h2>
+<p><b>강사:</b> “지금까지는 데이터를 어떻게 설계할지 배웠습니다. 그런데 실제 개발자는 설계한 데이터에서 원하는 값을 어떻게 꺼낼까요?”</p>
+<p>학생: “SQL이요.”</p>
+<p><b>강사:</b> “맞습니다. 다음 시간부터는 SQL 자체를 시작합니다. 첫 번째 명령은 우리가 가장 자주 보게 될 SELECT입니다.”</p>
+<div class='board'>Day1~2 = 데이터 구조를 이해
+Day3 = 데이터를 직접 조회/조작하는 SQL 시작</div></section>
+</main></body></html>

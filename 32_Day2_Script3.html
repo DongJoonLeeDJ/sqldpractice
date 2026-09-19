@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang='ko'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>SQLD Day2 Script3</title>
+<style>
+body{font-family:Arial,'Malgun Gothic',sans-serif;line-height:1.65;margin:0;background:#f7f7f7;color:#222}
+main{max-width:1000px;margin:0 auto;background:white;padding:36px 48px}
+h1{font-size:32px;border-bottom:3px solid #333;padding-bottom:12px}
+h2{font-size:24px;margin-top:36px}
+h3{font-size:19px;margin-top:24px}
+section{margin:24px 0}
+.board{background:#fff8dc;border-left:6px solid #d6a800;padding:18px;white-space:pre-wrap;font-family:Consolas,monospace}
+.exam{background:#fff0f0;border-left:6px solid #d33;padding:18px}
+.tip{background:#eef7ff;border-left:6px solid #3182ce;padding:18px}
+.memo{background:#f1f1f1;border-left:6px solid #777;padding:18px}
+.activity{background:#f1fff1;border-left:6px solid #38a169;padding:18px}
+.warn{background:#fff7ed;border-left:6px solid #dd6b20;padding:18px}
+table{border-collapse:collapse;width:100%;margin:16px 0}
+th,td{border:1px solid #aaa;padding:9px;text-align:left}
+th{background:#eee}
+code{background:#f0f0f0;padding:2px 5px}
+details{margin:12px 0}
+footer{margin-top:50px;color:#666;font-size:14px}
+</style>
+</head><body><main>
+<h1>SQLD Day2 — Script 3: 반정규화와 트랜잭션</h1>
+<section><h2>수업 목표</h2><p>정규화 이후 발생할 수 있는 조회 비용과 업무 처리의 안전성을 반정규화·트랜잭션으로 연결한다.</p></section>
+<section><h2>0~35분 | 반정규화</h2>
+<p><b>강사:</b> “정규화했더니 학생, 학과, 수강, 과목이 나뉘었습니다. 조회할 때 JOIN이 필요합니다. 그럼 JOIN이 많아지는 것이 항상 좋은 걸까요?”</p>
+<p>학생 답을 듣고 “반정규화는 성능과 업무 요구사항을 고려해 일부 중복이나 구조 변경을 허용하는 선택”이라고 정리한다.</p>
+<div class='board'>정규화 = 중복/이상현상 감소<br>반정규화 = 요구사항/성능 고려</div></section>
+<section><h2>35~70분 | 트랜잭션</h2>
+<p><b>강사:</b> “은행에서 10만원을 송금할 때 출금만 성공하면 될까요?”</p>
+<p><b>학생:</b> “안 됩니다.”</p>
+<p><b>강사:</b> “그럼 출금과 입금을 하나의 논리적 작업으로 묶어야겠죠. 이것이 트랜잭션입니다.”</p></section>
+<section><h2>70~100분 | ACID</h2>
+<p>송금 사례 하나로 Atomicity/Consistency/Isolation/Durability를 설명한다. 각각의 영문을 무작정 암기시키기보다 상황을 먼저 제시한다.</p>
+<div class='board'>A: Atomicity = 전부 또는 전무<br>C: Consistency = 규칙/일관성 유지<br>I: Isolation = 동시 작업의 영향 통제<br>D: Durability = 완료 결과 유지</div></section>
+<section><h2>100~120분 | COMMIT / ROLLBACK / SAVEPOINT</h2>
+<p>“확정”, “취소”, “중간 저장점” 세 단어를 먼저 말하게 한 후 SQL 명령과 연결한다.</p>
+<div class='exam'><b>시험 포인트</b><br>COMMIT=확정 / ROLLBACK=취소 / SAVEPOINT=중간 저장점</div>
+</section>
+</main></body></html>

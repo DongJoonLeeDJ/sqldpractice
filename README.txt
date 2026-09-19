@@ -1,4 +1,3 @@
-sql lecture practice
 SQLD Day2 강사용 자료
 구성:
 - Day2-1.html ~ Day2-4.html : 학생용/강의용 HTML

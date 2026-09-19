@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang='ko'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>SQLD DAY2-1 관계(Relationship)</title>
+<style>
+body{font-family:Arial,'Malgun Gothic',sans-serif;line-height:1.65;margin:0;background:#f7f7f7;color:#222}
+main{max-width:1000px;margin:0 auto;background:white;padding:36px 48px}
+h1{font-size:32px;border-bottom:3px solid #333;padding-bottom:12px}
+h2{font-size:24px;margin-top:36px}
+h3{font-size:19px;margin-top:24px}
+section{margin:24px 0}
+.board{background:#fff8dc;border-left:6px solid #d6a800;padding:18px;white-space:pre-wrap;font-family:Consolas,monospace}
+.exam{background:#fff0f0;border-left:6px solid #d33;padding:18px}
+.tip{background:#eef7ff;border-left:6px solid #3182ce;padding:18px}
+.memo{background:#f1f1f1;border-left:6px solid #777;padding:18px}
+.activity{background:#f1fff1;border-left:6px solid #38a169;padding:18px}
+.warn{background:#fff7ed;border-left:6px solid #dd6b20;padding:18px}
+table{border-collapse:collapse;width:100%;margin:16px 0}
+th,td{border:1px solid #aaa;padding:9px;text-align:left}
+th{background:#eee}
+code{background:#f0f0f0;padding:2px 5px}
+details{margin:12px 0}
+footer{margin-top:50px;color:#666;font-size:14px}
+</style>
+</head><body><main>
+<h1>SQLD DAY2-1 — 관계(Relationship)</h1>
+<section><h2>🎯 학습목표</h2>
+<ul><li>엔터티 사이에 왜 관계가 필요한지 설명할 수 있다.</li>
+<li>관계(Relationship), 관계차수(Cardinality), 선택성(Optionality)의 의미를 이해한다.</li>
+<li>1:1, 1:N, N:M 관계를 실제 업무 사례로 구분할 수 있다.</li>
+<li>식별관계와 비식별관계의 차이를 기초 수준에서 이해한다.</li></ul></section>
+
+<section><h2>🎤 도입 질문</h2>
+<p>“어제 학생이라는 엔터티와 학번·이름·학과라는 속성을 배웠습니다. 그런데 실제 학교 시스템에는 학생만 있을까요?”</p>
+<p>학생 → 수강신청 → 과목처럼 서로 연결된 정보가 있습니다. 오늘은 바로 이 <b>연결</b>을 다룹니다.</p>
+<div class='activity'><b>학생에게 질문</b><br>
+“학생과 과목은 어떤 관계가 있을까요?”<br>
+예상 답: “학생이 과목을 수강한다.”</div></section>
+
+<section><h2>1. 관계가 왜 필요한가?</h2>
+<p>데이터를 각각 따로 저장하는 것만으로는 업무를 표현하기 어렵습니다.</p>
+<table><tr><th>엔터티</th><th>대표 속성</th></tr>
+<tr><td>학생</td><td>학번, 이름, 학과</td></tr>
+<tr><td>과목</td><td>과목번호, 과목명, 학점</td></tr>
+</table>
+<p>“김철수 학생이 데이터베이스 과목을 수강한다”는 사실은 학생과 과목의 연결 정보가 있어야 표현할 수 있습니다.</p>
+<div class='board'>학생 ───── 수강한다 ───── 과목</div></section>
+
+<section><h2>2. 관계(Relationship)란?</h2>
+<p>관계는 두 개 이상의 엔터티가 업무적으로 어떤 연관성을 가지는지를 나타냅니다.</p>
+<p>중요한 것은 관계를 단순히 “선 하나”로 외우지 않는 것입니다. <b>업무에서 실제로 어떤 연결이 존재하는지</b>를 표현하는 것입니다.</p>
+<div class='tip'><b>실무식 질문</b><br>
+“학생이 과목을 수강하지 않을 수도 있는가?”<br>
+“한 학생이 여러 과목을 수강할 수 있는가?”<br>
+“한 과목을 여러 학생이 수강할 수 있는가?”<br>
+이 질문을 통해 관계의 구조를 찾아갑니다.</div></section>
+
+<section><h2>3. 관계차수: 1:1 / 1:N / N:M</h2>
+<h3>① 1:1</h3>
+<p>한 엔터티의 한 인스턴스가 다른 엔터티의 한 인스턴스와 연결되는 형태.</p>
+<p>예: 사원 ↔ 사원별 지정 사물함(업무 규칙상 1인 1개, 사물함도 1명에게만 배정)</p>
+
+<h3>② 1:N</h3>
+<p>한쪽 하나가 다른 쪽 여러 개와 연결되는 형태.</p>
+<p>예: 학과 1개 → 여러 학생. 학생 한 명은 하나의 학과에 소속되고, 한 학과에는 여러 학생이 있을 수 있습니다.</p>
+<div class='board'>학과 1 ───────── N 학생</div>
+
+<h3>③ N:M</h3>
+<p>양쪽 모두 여러 개와 연결될 수 있는 형태.</p>
+<p>예: 학생 N ↔ M 과목. 학생 한 명이 여러 과목을 수강하고, 과목 하나도 여러 학생이 수강할 수 있습니다.</p>
+<div class='warn'><b>중요</b><br>N:M 관계는 관계형 데이터베이스 테이블에서 그대로 관리하기 어렵습니다. 보통 중간에 연결 엔터티(예: 수강)를 두어 1:N + N:1 구조로 풀어냅니다.</div>
+<div class='board'>학생 1 ─── N 수강 N ─── 1 과목</div></section>
+
+<section><h2>4. 관계를 테이블 관점으로 연결하기</h2>
+<p>학생과 과목이 N:M이라면 다음처럼 생각합니다.</p>
+<table><tr><th>학생</th><th>수강</th><th>과목</th></tr>
+<tr><td>학번(PK)<br>이름</td><td>학번(FK)<br>과목번호(FK)<br>성적</td><td>과목번호(PK)<br>과목명</td></tr></table>
+<p>“수강”은 단순한 선이 아니라 실제 업무 데이터가 될 수 있습니다. 성적, 수강일자 등이 수강 자체의 속성이 될 수 있기 때문입니다.</p></section>
+
+<section><h2>5. 선택성(Optionality)</h2>
+<p>관계가 “반드시 존재하는가, 없어도 되는가”를 생각합니다.</p>
+<p>예: 신입생이 아직 과목을 하나도 수강하지 않았을 수 있다면, 학생 입장에서 수강 관계는 선택적일 수 있습니다.</p>
+<div class='memo'>강사 메모: 초급반에서는 선택성을 기호 암기보다 “없어도 되는가?”라는 업무 질문으로 먼저 설명한다. ERD 표기법 자체는 시험 범위에 맞춰 이후 문제에서 연결한다.</div></section>
+
+<section class='exam'><h2>⭐ 시험 포인트</h2>
+<ul><li>관계의 의미와 관계차수(1:1, 1:N, N:M)를 구분한다.</li>
+<li>N:M 관계는 관계형 테이블 구조에서 중간 엔터티를 통해 해소되는 과정을 이해한다.</li>
+<li>관계는 단순한 연결선이 아니라 업무적으로 의미 있는 연관성이다.</li></ul></section>
+
+<section><h2>📝 Mini Quiz</h2>
+<p><b>Q1.</b> 학생 한 명은 여러 과목을 수강하고, 과목 하나도 여러 학생이 수강한다. 관계는?</p>
+<ol><li>1:1</li><li>1:N</li><li>N:M</li><li>0:1</li></ol>
+<details><summary>정답 보기</summary><p><b>③ N:M</b></p></details>
+<p><b>Q2.</b> N:M 관계를 테이블 구조로 풀 때 가장 자연스러운 방법은?</p>
+<details><summary>정답 보기</summary><p>중간에 수강 같은 연결 엔터티를 두어 1:N과 N:1 관계로 분해한다.</p></details></section>
+
+<section><h2>📌 마무리</h2>
+<p>Day1에서 “무엇을 관리할 것인가(Entity), 그 특징은 무엇인가(Attribute), 어떻게 구분할 것인가(Identifier)”를 배웠다면, 오늘은 “서로 어떻게 연결되는가(Relationship)”를 배웠습니다.</p>
+<p>다음 시간에는 이렇게 만든 데이터 구조에서 <b>왜 중복이 생기고, 왜 테이블을 나눠야 하는지</b>로 넘어갑니다.</p></section>
+</main></body></html>
