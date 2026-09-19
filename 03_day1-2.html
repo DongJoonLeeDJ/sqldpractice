@@ -52,7 +52,67 @@ details{margin:8px 0} summary{cursor:pointer;font-weight:bold}
 
 <section class='warn'><h2>⭐ 시험 포인트</h2>
 <p>Relation / Tuple / Attribute / Domain 용어 문제는 매우 자주 출제된다.</p>
+
+
+
+
+
 </section>
+
+<pre>
+    
+## Relation / Tuple / Attribute / Domain
+
+학생 테이블을 예로 들어보자.
+
+| 학번   | 이름  | 학년 |
+| ---- | --- | -- |
+| 1001 | 김철수 | 2  |
+| 1002 | 이영희 | 3  |
+
+### ① Relation (릴레이션)
+
+* 데이터를 **표 형태로 표현한 것**
+* 쉽게 말해 **테이블**
+* 예: `학생` 테이블
+
+### ② Tuple (튜플)
+
+* Relation에서 **하나의 행(Row)**
+* 한 명의 학생에 대한 전체 데이터
+* 예: `(1001, 김철수, 2)`
+
+### ③ Attribute (속성)
+
+* Relation에서 **하나의 열(Column)**
+* 데이터를 어떤 기준으로 구분할 것인지 나타냄
+* 예: `학번`, `이름`, `학년`
+
+### ④ Domain (도메인)
+
+* 하나의 Attribute가 **가질 수 있는 값의 범위**
+* 예: `학년`의 Domain → `1, 2, 3, 4`
+* 예: `성별`의 Domain → `남, 여`
+
+### ⭐ 한 줄 암기
+
+* Relation = **테이블**
+* Tuple = **행(Row)**
+* Attribute = **열(Column)**
+* Domain = **속성이 가질 수 있는 값의 범위**
+
+### ⭐ 쉽게 비유하면
+
+학생 테이블에서
+
+`학년` → Attribute
+`1, 2, 3, 4` → Domain
+`1001, 김철수, 2` → Tuple
+`학생 테이블 전체` → Relation
+
+<pre>
+
+
 
 <section><h2>📝 Mini Quiz</h2>
 <p>다음 중 Attribute에 해당하는 것은?</p>
